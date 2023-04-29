@@ -31,10 +31,12 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
         // Disable raycasting and set the alpha of the canvas group to 1
-        if (handler.isHandedToCustomer()) 
+        if (handler.isValidToCustomer())
         {
             GameManager.Instance.EarnMoney(handler.product.price);
+
         }
+
 
         //if(GameManager.Instance.customersInGame)
         rectTransform.anchoredPosition = OriginalPos;

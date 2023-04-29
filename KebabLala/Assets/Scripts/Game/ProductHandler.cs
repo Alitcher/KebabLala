@@ -5,15 +5,20 @@ using UnityEngine;
 public class ProductHandler : MonoBehaviour
 {
     public Drink product;
-    private bool handed = true;
+    private bool handed = false;
+    private bool isCorrectProduct = false;
+    CustomerHandler customer;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "customer")
         {
-            CustomerHandler customer = collision.gameObject.GetComponent<CustomerHandler>();
+             customer = collision.gameObject.GetComponent<CustomerHandler>();
             Debug.Log($"Deliver {this.name} to {customer.name}");
             handed = true;
+
+            
         }
     }
 
@@ -22,8 +27,8 @@ public class ProductHandler : MonoBehaviour
         handed = false;
     }
 
-    public bool isHandedToCustomer()
+    public bool isValidToCustomer()
     {
-        return handed;
+        return customer.CheckProductMatch(product.id) && handed ;
     }
 }

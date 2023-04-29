@@ -9,6 +9,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text timeText;
 
 
+    private void Start()
+    {
+        moneyText.text = GameManager.Instance.GetMoney().ToString();
+    }
+
     public void UpdateMoney(int playerMoney) 
     {
         moneyText.text = playerMoney.ToString();
