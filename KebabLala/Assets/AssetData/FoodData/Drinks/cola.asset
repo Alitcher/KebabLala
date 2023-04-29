@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ab02c238226c542ad59b02578d9944, type: 3}
+  m_Name: cola
+  m_EditorClassIdentifier: 
+  productType: 0
+  avatar: {fileID: 21300000, guid: f8fccd1232204ec41ad7832bd9e05c60, type: 3}
+  drinkName: cola
+  id: 1111
+  price: 11
