@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 5780325408325625943}
   - component: {fileID: 5815214910366118061}
   - component: {fileID: 9083356493447951452}
+  - component: {fileID: 7944005819106609926}
   m_Layer: 5
   m_Name: DonerFullPlateCustomer
   m_TagString: plate
@@ -633,6 +634,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7944005819106609926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578144042614763298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713d2079c9344374bbe5f32d1d6de39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ingredients:
+  - {fileID: 2780964555189427424}
+  - {fileID: 6435124243850605372}
+  - {fileID: 110874625564981178}
+  - {fileID: 8917104499462325940}
+  - {fileID: 8828961610463301676}
 --- !u!1 &8828961610463301676
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5357410002467656688}
   m_Layer: 5
-  m_Name: Doner (1)
+  m_Name: Doner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

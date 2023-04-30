@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CustomerHandler : MonoBehaviour
 {
+    [SerializeField] private KebabData kebabPlate;
+    [SerializeField] private KebabData kebabPrefabData;
+
     [SerializeField] private BoxCollider2D colliderSelf;
     [SerializeField] private RectTransform BubbleBox;
     [SerializeField] private GameObject BubbleParent;
@@ -12,6 +15,7 @@ public class CustomerHandler : MonoBehaviour
 
     [SerializeField] private Image avatar;
     [SerializeField] private Customer data;
+    //[SerializeField] private Food kebabData;
 
     [SerializeField] private string customerName;
     [SerializeField] private string id;
@@ -23,44 +27,59 @@ public class CustomerHandler : MonoBehaviour
     [SerializeField] private int tip;
     private int desiredFoodCount;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-
-    }
-
     public void DestroyThis() 
     {
         Destroy(this.gameObject, 3f);
     }
 
-    public bool CheckProductMatch(string id)
+    public bool CheckProductMatch(string id, ref bool handed)
     {
         for (int i = 0; i < desiredFoodCount; i++)
         {
             if (desiredFoodId[i] == null)
                 continue;
-            if (id == desiredFoodId[i])
+            if (id == desiredFoodId[i] && handed)
             {
                 desiredFoodId[i] = null;
-                desiredFoodIcon[i].gameObject.SetActive(false);
                 if (CheckGetAllProduct()) 
                 {
+                    GameManager.Instance.soundManager.Play2("coins collected4");
+
                     reaction.sprite = reactEmoji[0];
                     DestroyThis();
 
                 }
+                desiredFoodIcon[i].gameObject.SetActive(false);
+
                 return true;
 
-            }
-            else
-            {
-                print($"{desiredFoodId[i]} doesnt match {id}");
             }
 
         }
         return false;
+    }
+
+    public bool CheckProductMatch(ref GameObject[] ingre) 
+    {
+        bool match = true;
+        if (kebabPlate == null)
+            match =  false;
+        for (int i = 0; i < ingre.Length; i++)
+        {
+            if (kebabPlate.transform.GetChild(i).gameObject.activeSelf != ingre[i].activeSelf) 
+            {
+                match = false;
+                return match;
+            }
+        }
+        if (CheckGetAllProduct()) 
+        {
+            reaction.sprite = reactEmoji[0];
+            DestroyThis();
+        }
+        Destroy(kebabPlate.gameObject);
+
+        return match;
     }
 
     private bool CheckGetAllProduct()
@@ -81,15 +100,16 @@ public class CustomerHandler : MonoBehaviour
         return getAll;
     }
 
-    private bool wantsFood = false;
+    private bool wantsKebab = false;
     private void SetCustomerData()
     {
         desiredFoodCount =  GameManager.Instance.customerCount < 4 ? 1 : Random.Range(1, 4);
-
+        if (GameManager.Instance.PlayerLevel > 3)
+        {
+            wantsKebab = Random.Range(0, 2) == 0 ? false : true;
+        }
         customerName = data.customerName;
         avatar.sprite = data.avatar;
-
-        customerName = data.customerName;
         id = data.id;
 
         desiredFoodId = new string[desiredFoodCount];
@@ -98,6 +118,14 @@ public class CustomerHandler : MonoBehaviour
         int drinkId;
         for (int i = 0; i < desiredFoodCount; i++)
         {
+            if (wantsKebab) 
+            {
+                kebabPlate = Instantiate(kebabPrefabData, BubbleBox);
+                kebabPlate.name = "KebabPlate";
+                kebabPlate.SetActiveIndredients();
+                wantsKebab = false;
+                continue;
+            }
             if (desiredFoodIcon[i] == null)
             {
                 desiredFoodIcon[i] = Instantiate(productPrefab, BubbleBox);
@@ -109,7 +137,6 @@ public class CustomerHandler : MonoBehaviour
             desiredFoodIcon[i].sprite = GameManager.Instance.DrinksCollection[drinkId].avatar;
         }
         reaction.gameObject.SetActive(false);
-        // desiredDrinks = new Image[]
     }
 
     public void SetCustomerData(Customer _data)

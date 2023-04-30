@@ -34,6 +34,13 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         // Follow the position of the mouse cursor while dragging
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        if (this.tag == "plate")
+        {
+            foreach (GameObject item in GameManager.Instance.IngredientShelves)
+            {
+                item.SetActive(false);
+            }
+        }
         //transform.position = Input.mousePosition;
     }
 
@@ -62,10 +69,14 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
         if (handler == null)
             return;
         // Disable raycasting and set the alpha of the canvas group to 1
-        if (handler.isValidToCustomer())
+        bool match = handler.isValidToCustomer();
+        if (this.tag == "plate")
         {
-            GameManager.Instance.EarnMoney(handler.product.sell);
 
+            foreach (GameObject item in GameManager.Instance.IngredientShelves)
+            {
+                item.SetActive(true);
+            }
         }
 
 

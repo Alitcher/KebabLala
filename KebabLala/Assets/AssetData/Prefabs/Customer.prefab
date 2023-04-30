@@ -116,6 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af8fcdd74a7ee54aa46affa9bc16ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kebabPlate: {fileID: 0}
+  kebabPrefabData: {fileID: 7944005819106609926, guid: 55e6c5c5f83f9b9448350904548e2c32,
+    type: 3}
   colliderSelf: {fileID: 1214070500457888176}
   BubbleBox: {fileID: 1214070502243840928}
   BubbleParent: {fileID: 1214070500823421809}

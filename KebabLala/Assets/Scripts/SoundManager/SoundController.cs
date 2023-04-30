@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.Audio;
+using Singleton;
 
-public class SoundController : MonoBehaviour
+public class SoundController : AliciaGenericSingleton<SoundController>
 {
     public static SoundController Instance { get { return _instance; } }
     private static SoundController _instance;
 
     public SoundClass[] Sounds;
     // Use this for initialization
-    void Awake()
+    void Start()
     {
         foreach (SoundClass s in Sounds)
         {
