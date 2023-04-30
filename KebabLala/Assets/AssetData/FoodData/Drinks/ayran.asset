@@ -16,4 +16,5 @@ MonoBehaviour:
   avatar: {fileID: 21300000, guid: 05f9fd681ee46ee4a9dfb90c2319b862, type: 3}
   drinkName: ayran
   id: 0000
-  price: 10
+  sell: 10
+  buy: 1

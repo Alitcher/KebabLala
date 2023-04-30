@@ -81,6 +81,7 @@ public class CustomerHandler : MonoBehaviour
         return getAll;
     }
 
+    private bool wantsFood = false;
     private void SetCustomerData()
     {
         desiredFoodCount =  GameManager.Instance.customerCount < 4 ? 1 : Random.Range(1, 4);

@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3ab02c238226c542ad59b02578d9944, type: 3}
-  m_Name: cola
+  m_Script: {fileID: 11500000, guid: fe5a4101e5b276844a6ea036ef7d74c9, type: 3}
+  m_Name: KebabPlate
   m_EditorClassIdentifier: 
-  productType: 0
-  avatar: {fileID: 21300000, guid: f8fccd1232204ec41ad7832bd9e05c60, type: 3}
-  drinkName: cola
-  id: 1111
-  sell: 5
-  buy: 0
+  productType: 1
+  avatar: {fileID: 0}
+  foodName: 
+  hasMeat: 0
+  hasVeggie: 0
+  hasTortilla: 0
+  id: 
+  price: 0

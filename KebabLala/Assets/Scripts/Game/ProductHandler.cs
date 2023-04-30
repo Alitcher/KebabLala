@@ -5,8 +5,11 @@ using UnityEngine;
 public class ProductHandler : MonoBehaviour
 {
     public Drink product;
+    public Food mealPlate;
     private bool handed = false;
     private bool isCorrectProduct = false;
+
+    public bool isMeal;
     CustomerHandler customer;
 
 
@@ -30,5 +33,14 @@ public class ProductHandler : MonoBehaviour
     public bool isValidToCustomer()
     {
         return customer.CheckProductMatch(product.id) && handed ;
+    }
+
+    public void OnDragEnd()
+    {
+        if (isValidToCustomer())
+        {
+            GameManager.Instance.EarnMoney(product.sell);
+
+        }
     }
 }

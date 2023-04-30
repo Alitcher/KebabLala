@@ -17,7 +17,16 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        handler = GetComponent<ProductHandler>();
+
+        if (!TryGetComponent(out handler))
+        {
+            //Debug.LogError("ProductHandler component not found on GameObject");
+        }
+        else
+        {
+            // Do something with the handler component
+        }
+
         OriginalPos = rectTransform.anchoredPosition;
     }
 
@@ -28,12 +37,34 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
         //transform.position = Input.mousePosition;
     }
 
+    //public void OnEndDrag(PointerEventData eventData)
+    //{
+    //    canvasGroup.blocksRaycasts = true;
+    //    canvasGroup.alpha = 1f;
+
+    //    if (handler == null || handler.product == null)
+    //        return;
+    //    // Disable raycasting and set the alpha of the canvas group to 1
+    //    //if (handler.isValidToCustomer())
+    //    //{
+    //    //    GameManager.Instance.EarnMoney(handler.product.sell);
+
+    //    //}
+    //    SendMessage("OnDragEnd", SendMessageOptions.RequireReceiver);
+    //    rectTransform.anchoredPosition = OriginalPos;
+    //    canvasGroup.blocksRaycasts = true;
+    //    canvasGroup.alpha = 1f;
+
+    //}
+
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (handler == null)
+            return;
         // Disable raycasting and set the alpha of the canvas group to 1
         if (handler.isValidToCustomer())
         {
-            GameManager.Instance.EarnMoney(handler.product.price);
+            GameManager.Instance.EarnMoney(handler.product.sell);
 
         }
 

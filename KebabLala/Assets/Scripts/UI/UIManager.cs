@@ -7,11 +7,18 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text moneyText;
     [SerializeField] private Text timeText;
-
+    [SerializeField] private Text levelText;
 
     private void Start()
     {
         moneyText.text = GameManager.Instance.GetMoney().ToString();
+        levelText.text = GameManager.Instance.PlayerLevel.ToString();
+    }
+
+    public void UpdateLevel()
+    {
+        levelText.text = GameManager.Instance.PlayerLevel.ToString();
+
     }
 
     public void UpdateMoney(int playerMoney) 

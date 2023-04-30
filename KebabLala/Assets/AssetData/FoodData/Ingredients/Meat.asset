@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3ab02c238226c542ad59b02578d9944, type: 3}
-  m_Name: cola
+  m_Name: Meat
   m_EditorClassIdentifier: 
   productType: 0
-  avatar: {fileID: 21300000, guid: f8fccd1232204ec41ad7832bd9e05c60, type: 3}
-  drinkName: cola
-  id: 1111
-  sell: 5
+  avatar: {fileID: 0}
+  drinkName: 
+  id: 
+  sell: 0
   buy: 0

@@ -7,6 +7,15 @@ TagManager:
   - customer
   - cola
   - ayran
+  - onion
+  - tomato
+  - lettuce
+  - plate
+  - knife
+  - tortilla
+  - kebabpole
+  - kebabpiece
+  - mayonnaise
   layers:
   - Default
   - TransparentFX

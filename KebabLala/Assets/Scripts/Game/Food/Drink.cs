@@ -9,7 +9,8 @@ public class Drink : ScriptableObject
     public Sprite avatar;
     public string drinkName;
     public string id;
-    public int price;
+    public int sell;
+    public int buy;
 }
 
  
