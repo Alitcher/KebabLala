@@ -24,6 +24,7 @@ public class CustomerHandler : MonoBehaviour
     [SerializeField] private Image[] desiredFoodIcon;
     [SerializeField] private Image reaction;
 
+    [SerializeField] private Slider WaitingBar;
     [SerializeField] private int tip;
     private int desiredFoodCount;
 
