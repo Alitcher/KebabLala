@@ -53,3 +53,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: GameUI
+    uniqueID: 2827168061
+    locked: 0
+  - name: GameEnv
+    uniqueID: 874609185
+    locked: 0
+  - name: Tutorial
+    uniqueID: 3595373553
+    locked: 0
+  - name: Popup
+    uniqueID: 2956993365
+    locked: 0
