@@ -529,6 +529,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1882802716}
     m_Modifications:
+    - target: {fileID: 484861507121403124, guid: 43f7314d3c0102a4aba0ec998f359d22,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1491877335}
     - target: {fileID: 508529592927601008, guid: 43f7314d3c0102a4aba0ec998f359d22,
         type: 3}
       propertyPath: m_Pivot.x
@@ -641,44 +646,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 508529593047441774, guid: 43f7314d3c0102a4aba0ec998f359d22,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 508529593047441774, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 508529593047441774, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1491877335}
-    - target: {fileID: 508529593047441774, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 508529593047441774, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 508529593047441774, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadNextScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 508529593047441774, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: Game
-      objectReference: {fileID: 0}
-    - target: {fileID: 508529593047441774, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43f7314d3c0102a4aba0ec998f359d22, type: 3}
 --- !u!224 &4180260987858036676 stripped
