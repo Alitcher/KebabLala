@@ -11,13 +11,16 @@ public class GameManager : AliciaGenericSingleton<GameManager>
     public GameObject[] IngredientShelves;
     [SerializeField] private CustomerHandler customerHandlerPrefab;
     [SerializeField] private GameObject[] newFoodInShelf;
+    [SerializeField] private TutorialView tutorialViewPrefab;
+
+    public Level playingLevel;
     public Customer[] CustomerCollection;
     public Drink[] DrinksCollection;
     public Food[] KebabCombination;
 
     public RectTransform[] spotForCustomers;
 
-    public UIManager uiManager;
+    public GameUIMainView uiManager;
     public SoundController soundManager;
 
     public float countdownTime = 60f;
@@ -26,6 +29,9 @@ public class GameManager : AliciaGenericSingleton<GameManager>
     public int PlayerLevel { get; private set; }
 
     private int PlayerMoney = 1;
+
+    private GameState gameState;
+    
 
     public int customerCount { get; private set; }
     public CustomerHandler[] customersInGame = new CustomerHandler[2];
@@ -40,6 +46,12 @@ public class GameManager : AliciaGenericSingleton<GameManager>
 
     private void Start()
     {
+        if (playingLevel.tutorialDB != null) 
+        {
+            tutorialViewPrefab.gameObject.SetActive(true);
+        }
+
+        gameState = GameState.Mission;
         soundManager = GameObject.FindObjectOfType<SoundController>();
         currentTime = countdownTime;
         PlayerLevel = 0;
