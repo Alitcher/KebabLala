@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class GameUIMainView : MonoBehaviour
 {
     [SerializeField] private Text moneyText;
     [SerializeField] private Text timeText;
