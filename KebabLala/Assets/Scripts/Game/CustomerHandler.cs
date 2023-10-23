@@ -30,7 +30,7 @@ public class CustomerHandler : MonoBehaviour
 
     public void DestroyThis() 
     {
-        Destroy(this.gameObject, 3f);
+        Destroy(this.gameObject, 2f);
     }
 
     public bool CheckProductMatch(string id, ref bool handed)
@@ -44,8 +44,7 @@ public class CustomerHandler : MonoBehaviour
                 desiredFoodId[i] = null;
                 if (CheckGetAllProduct()) 
                 {
-                    GameManager.Instance.soundManager.Play2("coins collected4");
-
+                    GameManager.Instance.SetServedManager();
                     reaction.sprite = reactEmoji[0];
                     DestroyThis();
 

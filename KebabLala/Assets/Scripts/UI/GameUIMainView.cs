@@ -8,6 +8,8 @@ public class GameUIMainView : MonoBehaviour
     [SerializeField] private Text moneyText;
     [SerializeField] private Text timeText;
     [SerializeField] private Text levelText;
+    [SerializeField] private Text customerCountText;
+    [SerializeField] private Text customerGoalText;
 
     private void Start()
     {
@@ -19,6 +21,12 @@ public class GameUIMainView : MonoBehaviour
     {
         levelText.text = GameManager.Instance.PlayerLevel.ToString();
 
+    }
+
+    public void UpdateCustomerCount(string customerCount, string customerGoal) 
+    {
+        customerCountText.text = customerCount;
+        customerGoalText.text = customerGoal;
     }
 
     public void UpdateMoney(int playerMoney) 

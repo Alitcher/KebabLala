@@ -1,4 +1,5 @@
 ﻿using Singleton;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : AliciaGenericSingleton<GameManager>
 {
+    public bool skipTutorial = false;
+
+    public Action OnBeginGame;
+
     public AudioSource BGM;
     private bool gameBegun = false;
     public GameObject[] IngredientShelves;
@@ -22,16 +27,16 @@ public class GameManager : AliciaGenericSingleton<GameManager>
 
     public GameUIMainView uiManager;
     public SoundController soundManager;
+    
 
-    public float countdownTime = 60f;
+    public float countdownTime = 999f;//=> (float)playingLevel.timeLimited;
     private float currentTime;
 
     public int PlayerLevel { get; private set; }
 
     private int PlayerMoney = 1;
-
     private GameState gameState;
-    
+
 
     public int customerCount { get; private set; }
     public CustomerHandler[] customersInGame = new CustomerHandler[2];
@@ -46,16 +51,21 @@ public class GameManager : AliciaGenericSingleton<GameManager>
 
     private void Start()
     {
-        if (playingLevel.tutorialDB != null) 
+        if (playingLevel.tutorialDB != null && !skipTutorial)
         {
             tutorialViewPrefab.gameObject.SetActive(true);
+            gameState = GameState.Mission;
+        }
+        else
+        {
+
+            gameState = GameState.Game;
         }
 
-        gameState = GameState.Mission;
         soundManager = GameObject.FindObjectOfType<SoundController>();
         currentTime = countdownTime;
         PlayerLevel = 0;
-
+        uiManager.UpdateCustomerCount(customerCount.ToString(), playingLevel.customerGoal.ToString());
         InvokeRepeating("SpawnRandomCustomer", 0f, 2f);
 
         for (int i = 2; i < newFoodInShelf.Length; i++)
@@ -83,31 +93,54 @@ public class GameManager : AliciaGenericSingleton<GameManager>
 
         }
 
-        uiManager.UpdateCountdownText(minutes, seconds);
+        if (gameState == GameState.Game)
+        {
+            uiManager.UpdateCountdownText(minutes, seconds);
+
+        }
+    }
+
+    public void SetServedManager()
+    {
+        soundManager.Play2("coins collected4");
+        customerCount++;
+        uiManager.UpdateCustomerCount(customerCount.ToString(), playingLevel.customerGoal.ToString());
+        CheckCustomerComplete();
     }
 
     public void SpawnRandomCustomer()
     {
+        if (gameState == GameState.Summary)
+        {
+            return;
+        }
         for (int i = 0; i < spotForCustomers.Length; i++)
         {
             if (customersInGame[i] == null)
             {
-                int index = Random.Range(0, CustomerCollection.Length);
+                int index = UnityEngine.Random.Range(0, CustomerCollection.Length);
                 customersInGame[i] = Instantiate(customerHandlerPrefab, spotForCustomers[i]);
                 customersInGame[i].SetCustomerData(CustomerCollection[index]);
                 customersInGame[i].name = CustomerCollection[index].name;
                 customersInGame[i].gameObject.SetActive(true);
                 soundManager.Play("pop");
-
-                customerCount++;
             }
 
         }
-
-        CheckUpdateLevel();
     }
 
-    private void CheckUpdateLevel()
+    public bool IsCustomerComplete => (customerCount >= playingLevel.customerGoal);
+    private void CheckCustomerComplete() 
+    {
+        if (IsCustomerComplete) 
+        {
+            gameState = GameState.Summary;
+            soundManager.Play2("blink");
+            BGM.Stop();
+        }
+    }
+
+    private void CheckLevelComplete()
     {
         if (customerCount <= 4)
         {
@@ -156,7 +189,7 @@ public class GameManager : AliciaGenericSingleton<GameManager>
     public void increaseTime(float moreTime)
     {
         countdownTime += moreTime;
-        currentTime = countdownTime;
+        currentTime = countdownTime + moreTime;
         uiManager.UpdateCountdownText(minutes, seconds);
 
     }
@@ -185,7 +218,7 @@ public class GameManager : AliciaGenericSingleton<GameManager>
         SceneManager.LoadScene("Game");
     }
 
-    public void Menu() 
+    public void Menu()
     {
         SceneManager.LoadScene("Menu");
     }
