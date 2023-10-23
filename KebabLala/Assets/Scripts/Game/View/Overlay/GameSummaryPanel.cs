@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class MissionPanel : Overlay
+public class GameSummaryPanel : Overlay
 {
     [SerializeField] private TextKeyPair missionIncome;
     [SerializeField] private TextKeyPair missionCustomers;
+    [SerializeField] private TextKeyPair Tips;
     [SerializeField] private TextKeyPair happyCustomers;
-    [SerializeField] private TextKeyPair visitedCustomers;
+    [SerializeField] private TextKeyPair upsetCustomers;
+    [SerializeField] private TextKeyPair leftCustomers;
 
     public void SetIncome(string income)
     {
@@ -20,13 +21,23 @@ public class MissionPanel : Overlay
         missionCustomers.SetDescription(ref customersTotal);
     }
 
+    public void SetTipsTotal(string tips)
+    {
+        Tips.SetDescription(ref tips);
+    }
+
     public void SetHappyCustomersTotal(string happyCustomersTotal)
     {
         happyCustomers.SetDescription(ref happyCustomersTotal);
     }
 
-    public void SetVisitedCustomersTotal(string customersTotal)
+    public void SetUpsetCustomersTotal(string upsetCustomersTotal)
     {
-        visitedCustomers.SetDescription(ref customersTotal);
+        upsetCustomers.SetDescription(ref upsetCustomersTotal);
+    }
+
+    public void SetVisitedCustomersTotal(string leftoffCustomer)
+    {
+        leftCustomers.SetDescription(ref leftoffCustomer);
     }
 }
