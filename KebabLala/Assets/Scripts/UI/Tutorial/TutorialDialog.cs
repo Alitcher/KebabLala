@@ -10,7 +10,8 @@ public class TutorialDialog : MonoBehaviour
     [SerializeField] private Image catChefAvatar;
 
     //[SerializeField] private T;
-    private float dialogOffsetx = 100.0f;
+
+    private float dialogOffsetx = 300.0f;
     private float dialogOffsety = 200.0f;
 
     public void DisplayText(ref string _tutorialText)
