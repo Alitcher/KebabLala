@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverlayManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class GameOverlayManager : MonoBehaviour
     [SerializeField] private GameSummaryPanel gameSummaryPanel;
 
     private Dictionary<System.Type, Overlay> panelDictionary;
-
+    
     private void Awake()
     {
         // Initialize the dictionary
@@ -28,5 +29,38 @@ public class GameOverlayManager : MonoBehaviour
             bool shouldActivate = panelType == typeof(T);
             panelDictionary[panelType].gameObject.SetActive(shouldActivate);
         }
+    }
+    public void DeactivatePanel<T>() where T : Overlay
+    {
+        this.gameObject.SetActive(false);
+        if (panelDictionary.ContainsKey(typeof(T)))
+        {
+            panelDictionary[typeof(T)].gameObject.SetActive(false);
+        }
+    }
+
+    public void SetMissionDetail(int income, int customerCount, int happyCount)
+    {
+        missionPanel.SetIncome(income.ToString());
+        missionPanel.SetCustomersTotal(customerCount.ToString());
+        missionPanel.SetHappyCustomersTotal(happyCount.ToString());
+        Invoke("DeactivateMissionPanel", 3f);
+    }
+
+    public void SetSummaryDetail(int income, int customerCount, int happyCount) 
+    {
+        gameSummaryPanel.SetIncome(income.ToString());
+        gameSummaryPanel.SetCustomersTotal(customerCount.ToString());
+        gameSummaryPanel.SetHappyCustomersTotal(happyCount.ToString());
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

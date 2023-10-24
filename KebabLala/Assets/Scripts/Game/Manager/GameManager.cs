@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : AliciaGenericSingleton<GameManager>
 {
+    [SerializeField] private GameOverlayManager overlayManager;
+
     public bool skipTutorial = false;
 
     public Action OnBeginGame;
@@ -51,6 +53,11 @@ public class GameManager : AliciaGenericSingleton<GameManager>
 
     private void Start()
     {
+        overlayManager.gameObject.SetActive(true);
+        overlayManager.SetActiveChildPanel<MissionPanel>();
+        overlayManager.SetMissionDetail(playingLevel.moneyGoal, playingLevel.customerGoal, 0);
+        
+        
         if (playingLevel.tutorialDB != null && !skipTutorial)
         {
             tutorialViewPrefab.gameObject.SetActive(true);
@@ -83,18 +90,18 @@ public class GameManager : AliciaGenericSingleton<GameManager>
 
     private void Update()
     {
-        currentTime -= Time.deltaTime;
-
-        if (currentTime <= 0f)
-        {
-            // Countdown is finished, do something
-            currentTime = 0f;
-            CheckTimeup();
-
-        }
-
         if (gameState == GameState.Game)
         {
+            currentTime -= Time.deltaTime;
+
+            if (currentTime <= 0f)
+            {
+                // Countdown is finished, do something
+                currentTime = 0f;
+                CheckTimeup();
+
+            }
+
             uiManager.UpdateCountdownText(minutes, seconds);
 
         }
@@ -137,6 +144,10 @@ public class GameManager : AliciaGenericSingleton<GameManager>
             gameState = GameState.Summary;
             soundManager.Play2("blink");
             BGM.Stop();
+            overlayManager.gameObject.SetActive(true);
+            overlayManager.SetActiveChildPanel<GameSummaryPanel>();
+            overlayManager.SetSummaryDetail(PlayerMoney, customerCount, 0);
+
         }
     }
 
@@ -213,13 +224,5 @@ public class GameManager : AliciaGenericSingleton<GameManager>
         soundManager.Play("coins collected4");
     }
 
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene("Game");
-    }
 
-    public void Menu()
-    {
-        SceneManager.LoadScene("Menu");
-    }
 }
