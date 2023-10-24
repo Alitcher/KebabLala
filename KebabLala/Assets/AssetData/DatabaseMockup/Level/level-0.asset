@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: level-0
   m_EditorClassIdentifier: 
   id: 
-  moneyGoal: 7
-  customerGoal: 35
+  moneyGoal: 0
+  customerGoal: 6
   timeLimited: 999
   foodWasteLimited: 999
   tutorialDB: {fileID: 11400000, guid: f4c159d5828a4054c96c0b57d9605af0, type: 2}

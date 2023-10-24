@@ -103,7 +103,7 @@ public class CustomerHandler : MonoBehaviour
     private bool wantsKebab = false;
     private void SetCustomerData()
     {
-        desiredFoodCount =  GameManager.Instance.customerCount < 4 ? 1 : Random.Range(1, 4);
+        desiredFoodCount =  GameManager.Instance.customerCount < 2 ? 1 : Random.Range(1, 4);
         if (GameManager.Instance.PlayerLevel > 3)
         {
             wantsKebab = Random.Range(0, 2) == 0 ? false : true;
