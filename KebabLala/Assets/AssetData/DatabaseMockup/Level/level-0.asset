@@ -17,5 +17,10 @@ MonoBehaviour:
   customerGoal: 6
   timeLimited: 999
   foodWasteLimited: 999
+  customersInQueue: 1
+  MaxOrder: 3
+  MaxCudtomersQueue: 1
+  timeSlack: 0
   tutorialDB: {fileID: 11400000, guid: f4c159d5828a4054c96c0b57d9605af0, type: 2}
+  MixtureCollection: 
   targetMask: []

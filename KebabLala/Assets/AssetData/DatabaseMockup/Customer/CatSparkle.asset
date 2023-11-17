@@ -16,3 +16,4 @@ MonoBehaviour:
   id: 1000
   avatar: {fileID: 21300000, guid: 0dadeef2ab9a4274fbe68dc0f2121a92, type: 3}
   desiredFood: 
+  waitingTime: 5
