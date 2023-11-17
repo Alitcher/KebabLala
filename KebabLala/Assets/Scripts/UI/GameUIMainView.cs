@@ -13,13 +13,13 @@ public class GameUIMainView : MonoBehaviour
 
     private void Start()
     {
-        moneyText.text = GameManager.Instance.GetMoney().ToString();
-        levelText.text = GameManager.Instance.PlayerLevel.ToString();
+        moneyText.text = GameSystem.Instance.gameManager.GetMoney().ToString();
+        levelText.text = GameSystem.Instance.gameManager.PlayerLevel.ToString();
     }
 
     public void UpdateLevel()
     {
-        levelText.text = GameManager.Instance.PlayerLevel.ToString();
+        levelText.text = GameSystem.Instance.gameManager.PlayerLevel.ToString();
 
     }
 

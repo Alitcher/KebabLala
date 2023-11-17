@@ -30,13 +30,15 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
         OriginalPos = rectTransform.anchoredPosition;
     }
 
+
+
     public void OnDrag(PointerEventData eventData)
     {
         // Follow the position of the mouse cursor while dragging
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
         if (this.tag == "plate")
         {
-            foreach (GameObject item in GameManager.Instance.IngredientShelves)
+            foreach (GameObject item in GameSystem.Instance.gameManager.IngredientShelves)
             {
                 item.SetActive(false);
             }
@@ -52,7 +54,7 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
         if (this.tag == "plate")
         {
 
-            foreach (GameObject item in GameManager.Instance.IngredientShelves)
+            foreach (GameObject item in GameSystem.Instance.gameManager.IngredientShelves)
             {
                 item.SetActive(true);
             }

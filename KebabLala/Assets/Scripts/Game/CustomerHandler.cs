@@ -21,16 +21,23 @@ public class CustomerHandler : MonoBehaviour
     [SerializeField] private string id;
     [SerializeField] private Sprite[] reactEmoji;
     [SerializeField] private string[] desiredFoodId;
-    [SerializeField] private Image[] desiredFoodIcon;
+    [SerializeField] private Image[] desiredDrinkIcon;
     [SerializeField] private Image reaction;
 
     [SerializeField] private Slider WaitingBar;
     [SerializeField] private int tip;
     private int desiredFoodCount;
 
-    public void DestroyThis() 
+    private float waitingTime;
+
+    public void DestroyThis()
     {
         Destroy(this.gameObject, 2f);
+    }
+
+    private void Update()
+    {
+        CountdownOrder();
     }
 
     public bool CheckProductMatch(string id, ref bool handed)
@@ -42,14 +49,14 @@ public class CustomerHandler : MonoBehaviour
             if (id == desiredFoodId[i] && handed)
             {
                 desiredFoodId[i] = null;
-                if (CheckGetAllProduct()) 
+                if (CheckGetAllProduct())
                 {
-                    GameManager.Instance.SetServedManager();
+                    GameSystem.Instance.gameManager.SetServedManager();
                     reaction.sprite = reactEmoji[0];
                     DestroyThis();
 
                 }
-                desiredFoodIcon[i].gameObject.SetActive(false);
+                desiredDrinkIcon[i].gameObject.SetActive(false);
 
                 return true;
 
@@ -59,20 +66,20 @@ public class CustomerHandler : MonoBehaviour
         return false;
     }
 
-    public bool CheckProductMatch(ref GameObject[] ingre) 
+    public bool CheckProductMatch(ref GameObject[] ingre)
     {
         bool match = true;
         if (kebabPlate == null)
-            match =  false;
+            match = false;
         for (int i = 0; i < ingre.Length; i++)
         {
-            if (kebabPlate.transform.GetChild(i).gameObject.activeSelf != ingre[i].activeSelf) 
+            if (kebabPlate.transform.GetChild(i).gameObject.activeSelf != ingre[i].activeSelf)
             {
                 match = false;
                 return match;
             }
         }
-        if (CheckGetAllProduct()) 
+        if (CheckGetAllProduct())
         {
             reaction.sprite = reactEmoji[0];
             DestroyThis();
@@ -101,48 +108,77 @@ public class CustomerHandler : MonoBehaviour
     }
 
     private bool wantsKebab = false;
+    private int kebabCount = 0;
+    private int drinksCount = 0;
+
+
     private void SetCustomerData()
     {
-        desiredFoodCount =  GameManager.Instance.customerCount < 2 ? 1 : Random.Range(1, 4);
-        if (GameManager.Instance.PlayerLevel > 3)
-        {
-            wantsKebab = Random.Range(0, 2) == 0 ? false : true;
-        }
         customerName = data.customerName;
         avatar.sprite = data.avatar;
         id = data.id;
 
+        desiredFoodCount = GameSystem.Instance.gameManager.IsEarlyCustomer() ? 1 : Random.Range(1, GameSystem.Instance.gameManager.playingLevel.MaxOrder);
+        drinksCount = GameSystem.Instance.gameManager.IsEarlyCustomer() ? desiredFoodCount : desiredFoodCount - Random.Range(1, desiredFoodCount);
+        kebabCount = desiredFoodCount - drinksCount;
+
+        
         desiredFoodId = new string[desiredFoodCount];
-        desiredFoodIcon = new Image[desiredFoodCount];
+
+        desiredDrinkIcon = new Image[desiredFoodCount];
 
         int drinkId;
         for (int i = 0; i < desiredFoodCount; i++)
         {
-            if (wantsKebab) 
+            if (desiredDrinkIcon[i] == null)
             {
-                kebabPlate = Instantiate(kebabPrefabData, BubbleBox);
-                kebabPlate.name = "KebabPlate";
-                kebabPlate.SetActiveIndredients();
-                wantsKebab = false;
-                continue;
-            }
-            if (desiredFoodIcon[i] == null)
-            {
-                desiredFoodIcon[i] = Instantiate(productPrefab, BubbleBox);
-                desiredFoodIcon[i].name = desiredFoodId[i];
+                desiredDrinkIcon[i] = Instantiate(productPrefab, BubbleBox);
+                desiredDrinkIcon[i].name = desiredFoodId[i];
 
             }
-            drinkId = Random.Range(0, GameManager.Instance.DrinksCollection.Length);
-            desiredFoodId[i] = GameManager.Instance.DrinksCollection[drinkId].id;
-            desiredFoodIcon[i].sprite = GameManager.Instance.DrinksCollection[drinkId].avatar;
+            drinkId = Random.Range(0, GameSystem.Instance.gameManager.DrinksCollection.Length);
+            desiredFoodId[i] = GameSystem.Instance.gameManager.DrinksCollection[drinkId].id;
+            desiredDrinkIcon[i].sprite = GameSystem.Instance.gameManager.DrinksCollection[drinkId].avatar;
         }
+
+        if (GameSystem.Instance.gameManager.allowKebabOrder())
+        {
+            wantsKebab = Random.Range(0, 2) == 0 ? false : true;
+        }
+        if (wantsKebab && kebabCount > 0)
+        {
+            print(kebabCount + " kebabs");
+            SetKebabPlate();
+        }
+
+        waitingTime = data.waitingTime;
         reaction.gameObject.SetActive(false);
+    }
+
+    private void SetKebabPlate()
+    {
+
+        for (int i = 0; i < kebabCount; i++)
+        {
+            desiredFoodId[desiredFoodCount + i] = "";
+
+        }
+
+        kebabPlate = Instantiate(kebabPrefabData, BubbleBox);
+        kebabPlate.name = "KebabPlate";
+        kebabPlate.SetActiveIndredients();
+        wantsKebab = false;
     }
 
     public void SetCustomerData(Customer _data)
     {
         data = _data;
         SetCustomerData();
+    }
+
+    private void CountdownOrder()
+    {
+        WaitingBar.value -= Time.deltaTime * GameSystem.Instance.gameManager.playingLevel.timeSlack;
     }
 
 }

@@ -22,7 +22,7 @@ public class PlateHandler : MonoBehaviour
 
     public void ClearCollection()
     {
-        GameManager.Instance.BuyNewRecipe(10);
+        GameSystem.Instance.gameManager.BuyNewRecipe(10);
         for (int i = 0; i < FoodCollection.Length; i++)
         {
             FoodCollection[i].SetActive(false);

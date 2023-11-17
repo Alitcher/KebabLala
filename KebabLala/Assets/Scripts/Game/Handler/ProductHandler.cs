@@ -58,13 +58,13 @@ public class ProductHandler : MonoBehaviour
 
         if (checkMatch && handed && (this.tag != "plate")) 
         {
-            GameManager.Instance.EarnMoney(product.sell);
+            GameSystem.Instance.gameManager.EarnMoney(product.sell);
         }
         else if(checkMatch && handed && (this.tag == "plate"))
         {
             plate.ClearCollection();
-            GameManager.Instance.increaseTime(5);
-            GameManager.Instance.EarnMoney(150);
+            GameSystem.Instance.gameManager.increaseTime(5);
+            GameSystem.Instance.gameManager.EarnMoney(150);
 
         }
 

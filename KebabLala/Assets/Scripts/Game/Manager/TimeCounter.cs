@@ -21,7 +21,7 @@ public class TimeCounter : MonoBehaviour
         if (currentTime <= 0f)
         {
             currentTime = 0f;
-            GameManager.Instance.CheckTimeup(); // Here we call the GameManager's CheckTimeup method.
+            GameSystem.Instance.gameManager.CheckTimeup(); // Here we call the GameManager's CheckTimeup method.
         }
 
         int minutes = Mathf.FloorToInt(currentTime / 60f);

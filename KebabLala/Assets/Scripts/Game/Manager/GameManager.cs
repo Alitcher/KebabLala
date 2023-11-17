@@ -2,10 +2,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : AliciaGenericSingleton<GameManager>
+public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameOverlayManager overlayManager;
 
@@ -17,7 +18,6 @@ public class GameManager : AliciaGenericSingleton<GameManager>
     private bool gameBegun = false;
     public GameObject[] IngredientShelves;
     [SerializeField] private CustomerHandler customerHandlerPrefab;
-    [SerializeField] private GameObject[] newFoodInShelf;
     [SerializeField] private TutorialView tutorialViewPrefab;
 
     public Level playingLevel;
@@ -48,8 +48,19 @@ public class GameManager : AliciaGenericSingleton<GameManager>
     // public CustomerHandler[] customersPool = new CustomerHandler[6];
 
     [SerializeField] private CustomerHandler customerPrefab;
+
     int minutes => Mathf.FloorToInt(currentTime / 60f);
     int seconds => Mathf.FloorToInt(currentTime % 60f);
+
+    #region unused delete later
+    private GameObject[] newFoodInShelf;
+    #endregion
+
+    private void Awake()
+    {
+        InvokeRepeating("SpawnRandomCustomer", 0f, 2f);
+
+    }
 
     private void Start()
     {
@@ -73,13 +84,8 @@ public class GameManager : AliciaGenericSingleton<GameManager>
         currentTime = countdownTime;
         PlayerLevel = 0;
         uiManager.UpdateCustomerCount(customerCount.ToString(), playingLevel.customerGoal.ToString());
-        InvokeRepeating("SpawnRandomCustomer", 0f, 2f);
 
-        for (int i = 2; i < newFoodInShelf.Length; i++)
-        {
-            newFoodInShelf[i].gameObject.SetActive(false);
-        }
-
+        spotForCustomers[0].gameObject.SetActive(true);
     }
 
     public void CheckTimeup()
@@ -123,6 +129,16 @@ public class GameManager : AliciaGenericSingleton<GameManager>
         }
         for (int i = 0; i < spotForCustomers.Length; i++)
         {
+
+            if (i <= playingLevel.MaxCudtomersQueue && !IsEarlyCustomer()) 
+            {
+                spotForCustomers[i].gameObject.SetActive(true);
+            }
+            if (!spotForCustomers[i].gameObject.activeSelf)
+            {
+                //assiming that the first elements are always active before their followings.
+                break;
+            }
             if (customersInGame[i] == null)
             {
                 int index = UnityEngine.Random.Range(0, CustomerCollection.Length);
@@ -131,6 +147,10 @@ public class GameManager : AliciaGenericSingleton<GameManager>
                 customersInGame[i].name = CustomerCollection[index].name;
                 customersInGame[i].gameObject.SetActive(true);
                 soundManager.Play("pop");
+            }
+            else if (i > playingLevel.customersInQueue) 
+            {
+                spotForCustomers[i].gameObject.SetActive(false);
             }
 
         }
@@ -149,52 +169,6 @@ public class GameManager : AliciaGenericSingleton<GameManager>
             overlayManager.SetSummaryDetail(PlayerMoney, customerCount, 0);
 
         }
-    }
-
-    private void CheckLevelComplete()
-    {
-        if (customerCount <= 4)
-        {
-            PlayerLevel = 1;
-        }
-        else if (customerCount > 4 && customerCount <= 8)
-        {
-            PlayerLevel = 2;
-        }
-        else if (customerCount > 8 && customerCount <= 15)
-        {
-            PlayerLevel = 3;
-            if (!triggerVeggie)
-            {
-                for (int i = 2; i < 6; i++)
-                {
-                    newFoodInShelf[i].gameObject.SetActive(true);
-                }
-                triggerVeggie = true;
-                increaseTime(10);
-            }
-        }
-        else if (customerCount > 15 && customerCount <= 24)
-        {
-            PlayerLevel = 4;
-            if (!triggerKebab)
-            {
-                for (int i = 7; i < newFoodInShelf.Length; i++)
-                {
-                    newFoodInShelf[i].gameObject.SetActive(true);
-                }
-                triggerKebab = true;
-                increaseTime(20);
-            }
-        }
-        else
-        {
-            soundManager.Play2("blink");
-            PlayerLevel = 5;
-
-        }
-
-        uiManager.UpdateLevel();
     }
 
     public void increaseTime(float moreTime)
@@ -217,6 +191,16 @@ public class GameManager : AliciaGenericSingleton<GameManager>
         return PlayerMoney;
     }
 
+    public bool IsEarlyCustomer() 
+    {
+        return customerCount < 2;
+    }
+
+    public bool allowKebabOrder() 
+    {
+        return playingLevel.MixtureCollection.Length > 0;
+    }
+
     public void BuyNewRecipe(int price)
     {
         PlayerMoney -= price;
@@ -224,5 +208,9 @@ public class GameManager : AliciaGenericSingleton<GameManager>
         soundManager.Play("coins collected4");
     }
 
+    public void ResetGameLevel() 
+    {
+    
+    }
 
 }
