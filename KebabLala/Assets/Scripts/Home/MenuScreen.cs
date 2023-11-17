@@ -19,6 +19,10 @@ public class MenuScreen : MonoBehaviour
 
     }
 
+    public void GotoLevelSelection()
+    {
+        SceneManager.LoadScene("LevelSelection");
+    }
 
     public void StartGame()
     {
