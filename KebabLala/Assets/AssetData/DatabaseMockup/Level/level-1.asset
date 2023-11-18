@@ -17,10 +17,13 @@ MonoBehaviour:
   customerGoal: 7
   timeLimited: 999
   foodWasteLimited: 999
-  customersInQueue: 1
+  customersInQueue: 2
   MaxOrder: 3
-  MaxCudtomersQueue: 1
+  MaxCudtomersQueue: 2
   timeSlack: 0.25
   tutorialDB: {fileID: 0}
-  MixtureCollection: 0100000002000000
+  MixtureCollection: 04000000050000000300000006000000
+  MixtureShelfCollection: 010000000200000006000000
   targetMask: []
+  plate1Count: 1
+  plate2Count: 0

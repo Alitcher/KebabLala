@@ -22,5 +22,6 @@ MonoBehaviour:
   MaxCudtomersQueue: 1
   timeSlack: 0
   tutorialDB: {fileID: 0}
-  MixtureCollection: 
+  MixtureCollection: 04000000050000000300000006000000
+  MixtureShelfCollection: 01000000020000000600000003000000040000000500000007000000
   targetMask: []
