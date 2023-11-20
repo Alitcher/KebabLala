@@ -17,6 +17,7 @@ public class ProductHandler : MonoBehaviour
     CustomerHandler customer;
     [SerializeField] private PlateHandler plate;
 
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "customer")
@@ -57,11 +58,17 @@ public class ProductHandler : MonoBehaviour
 
     public bool isValidToCustomer()
     {
-        if (customer == null)
+        if (customer == null) 
+        {
             return false;
+        }
+        if (this.tag == "plate" && customer.KebabData == null) 
+        { 
+            return false; 
+        }
 
         bool checkMatch = (this.tag == "plate") ? customer.KebabData.CheckMatch(customer.KebabData.Mixtures)
-            : customer.CheckProductMatch(product.id, ref handed);
+                                                : customer.CheckProductMatch(product.id, ref handed);
 
         if (checkMatch && handed && (this.tag != "plate"))
         {

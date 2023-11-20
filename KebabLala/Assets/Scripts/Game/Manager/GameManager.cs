@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public SoundController soundManager;
     
 
-    public float countdownTime = 999f;//=> (float)playingLevel.timeLimited;
+    public float countdownTime;
     private float currentTime;
 
     private int PlayerMoney = 1;
@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour
 
     public void SetLevelConfig() 
     {
+        countdownTime = (float)playingLevel.timeLimited;
+        currentTime = countdownTime;
+
         playingLevel = GameSystem.Instance.LevelCollections.LevelGroups[GameSystem.PlayerLevel].level;
         overlayManager.gameObject.SetActive(true);
         overlayManager.SetActiveChildPanel<MissionPanel>();
@@ -73,7 +76,6 @@ public class GameManager : MonoBehaviour
         }
 
         soundManager = GameObject.FindObjectOfType<SoundController>();
-        currentTime = countdownTime;
         SetActiveCustomer();
         SetActiveGameTable();
     }
@@ -144,22 +146,27 @@ public class GameManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (IsPaused)
-                {
-                    overlayManager.gameObject.SetActive(false);
-                    gameState = GameState.Game;
-                    overlayManager.DeactivatePanel<PausePanel>();
-                    IsPaused = false;
-                }
-                else
-                {
-                    overlayManager.gameObject.SetActive(true);
-                    gameState = GameState.Pause;
-                    overlayManager.SetActiveChildPanel<PausePanel>();
-                    IsPaused = true;
-                }
+                Pause();
             }
 
+        }
+    }
+
+    public void Pause() 
+    {
+        if (IsPaused)
+        {
+            overlayManager.gameObject.SetActive(false);
+            gameState = GameState.Game;
+            overlayManager.DeactivatePanel<PausePanel>();
+            IsPaused = false;
+        }
+        else
+        {
+            overlayManager.gameObject.SetActive(true);
+            gameState = GameState.Pause;
+            overlayManager.SetActiveChildPanel<PausePanel>();
+            IsPaused = true;
         }
     }
 

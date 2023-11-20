@@ -21,14 +21,16 @@ public class LevelSelectManager : AliciaGenericSingleton<LevelSelectManager>
         pendingTutorial = LevelCollections.LevelGroups[level].tutorial;
         levelPending = true;
         //SceneManager.LoadScene("Game"); // Load the game scene
+        levelSelected = level;
     }
 
+    private int levelSelected;
     private void OnGameSceneActive()
     {
         if (levelPending)
         {
             // Set the playing level now that the game scene is active
-            GameSystem.Instance.SetPlayingLevel(ref pendingLevel, ref pendingTutorial);
+            GameSystem.Instance.SetPlayingLevel(ref pendingLevel, ref pendingTutorial, levelSelected);
             levelPending = false; // Reset the flag
         }
     }

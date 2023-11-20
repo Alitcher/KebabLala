@@ -41,19 +41,24 @@ public class GameSystem : AliciaGenericSingleton<GameSystem>
         {
             PlayAtLevel(4);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            PlayAtLevel(5);
+        }
     }
     private void PlayAtLevel(int level)
     {
         SceneManager.LoadScene("Game");
-        gameManager.SetLevelConfig();
         PlayerLevel = level;
+
+        gameManager.SetLevelConfig();
     }
 
-    internal void SetPlayingLevel(ref Level level, ref Tutorial tutorial)
+    internal void SetPlayingLevel(ref Level level, ref Tutorial tutorial, int _level)
     {
         if (KebabLalaSystem.Instance.GetCurrentScene() == 2)
         {
-
+            PlayerLevel = _level;
             gameManager.SetLevelConfig();
             //gameManager.SetGameField();
         }
