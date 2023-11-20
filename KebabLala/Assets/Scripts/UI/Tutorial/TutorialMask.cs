@@ -34,9 +34,9 @@ public class TutorialMask : MonoBehaviour
         circleMask.enabled = isEnable;
     }
 
-    public void SetMaskPosition(ref Vector3 pisitionRef) 
+    public void SetMaskPosition(ref Vector3 positionRef) 
     {
-        circleMask.gameObject.transform.position = pisitionRef + new Vector3(200.0f, 200.0f, circleMask.gameObject.transform.position.z);
+        circleMask.gameObject.transform.position = positionRef + new Vector3(200.0f, 0.0f, circleMask.gameObject.transform.position.z);
     }
 
     public void SetMaskSize() 
@@ -59,6 +59,11 @@ public class TutorialMask : MonoBehaviour
 
         maskCoordinate.offsetMin = offsetMin;
         maskCoordinate.offsetMax = offsetMax;
+    }
+
+    public void SetMaskWidthHeight(Vector2 widhei)
+    {
+        maskCoordinate.sizeDelta = widhei;
     }
 
     public void SetMaskSize(float _width, float _height)

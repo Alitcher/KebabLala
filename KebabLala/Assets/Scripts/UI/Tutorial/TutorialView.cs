@@ -57,6 +57,7 @@ public class TutorialView : MonoBehaviour
             tutorialMask.SetEnablMask(tutorialDB.DisplayMask[descriptionIndex]);
             tutorialMask.SetMaskPosition(ref objToTrackPosition[descriptionIndex]);
             tutorialMask.SetMaskSize(ref tutorialDB.DialogPosition[descriptionIndex]);
+            //tutorialMask.SetMaskWidthHeight(objToTrack[descriptionIndex].sizeDelta);
             descriptionIndex++;
 
         }

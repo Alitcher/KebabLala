@@ -44,6 +44,7 @@ public class GameOverlayManager : MonoBehaviour
         missionPanel.SetIncome(income.ToString());
         missionPanel.SetCustomersTotal(customerCount.ToString());
         missionPanel.SetHappyCustomersTotal(happyCount.ToString());
+        missionPanel.SetLevel();
         Invoke("DeactivateMissionPanel", 3f);
     }
 
@@ -54,6 +55,11 @@ public class GameOverlayManager : MonoBehaviour
         gameSummaryPanel.SetHappyCustomersTotal(happyCount.ToString());
     }
 
+    public void SetPauseDetail(string level)
+    {
+        pausePanel.SetLevelText(level);
+    }
+
     public void RestartLevel()
     {
         SceneManager.LoadScene("Game");
@@ -62,5 +68,10 @@ public class GameOverlayManager : MonoBehaviour
     public void Menu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void Selection()
+    {
+        SceneManager.LoadScene("LevelSelection");
     }
 }

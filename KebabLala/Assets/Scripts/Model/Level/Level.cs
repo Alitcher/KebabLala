@@ -18,6 +18,7 @@ public class Level : ScriptableObject
     public float timeSlack;
     public Tutorial tutorialDB;
     public KebabMixtures[] MixtureCollection;
+    public Drinks[] DrinkCollection;
     public Shelves[] MixtureShelfCollection;
     public Vector2[] targetMask;
 

@@ -10,6 +10,14 @@ public class MissionPanel : Overlay
     [SerializeField] private TextKeyPair happyCustomers;
     [SerializeField] private TextKeyPair visitedCustomers;
 
+    [SerializeField] private TextKeyPair LevelHeader;
+
+
+    public void SetLevel() 
+    {
+        LevelHeader.SetDescription(ref GameSystem.Instance.LevelCollections.LevelGroups[GameSystem.PlayerLevel].level.id);
+    }
+
     public void SetIncome(string income)
     {
         missionIncome.SetDescription(ref income);

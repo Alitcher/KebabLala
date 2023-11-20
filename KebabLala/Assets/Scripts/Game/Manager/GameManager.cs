@@ -34,54 +34,33 @@ public class GameManager : MonoBehaviour
     public float countdownTime = 999f;//=> (float)playingLevel.timeLimited;
     private float currentTime;
 
-
     private int PlayerMoney = 1;
     private GameState gameState;
-
 
     public int customerCount { get; private set; }
     public CustomerHandler[] customersInGame = new CustomerHandler[2];
 
-    private bool triggerVeggie, triggerKebab;
-
-    // public CustomerHandler[] customersPool = new CustomerHandler[6];
-
     [SerializeField] private CustomerHandler customerPrefab;
 
+    public bool IsPaused = false;
     int minutes => Mathf.FloorToInt(currentTime / 60f);
     int seconds => Mathf.FloorToInt(currentTime % 60f);
 
-    #region unused delete later
-    private GameObject[] newFoodInShelf;
-    #endregion
-
-
-    private IEnumerator InitializeGameAfterSettings()
-    {
-        // Wait until the level is set
-        yield return new WaitUntil(() => playingLevel != null);
-
-        // Now we can initialize the game table and start spawning customers
-        SetActiveGameTable();
-        InvokeRepeating("SpawnRandomCustomer", 0f, 2f);
-    }
-
     private void Awake()
     {
-        // Now we can initialize the game table and start spawning customers
-        InvokeRepeating("SpawnRandomCustomer", 0f, 2f);
-        SetActiveGameTable();
+        InvokeRepeating("SpawnRandomCustomer", 0f, 1.5f);
 
     }
 
-    private void Start()
+    public void SetLevelConfig() 
     {
-        //StartCoroutine(InitializeGameAfterSettings());
+        playingLevel = GameSystem.Instance.LevelCollections.LevelGroups[GameSystem.PlayerLevel].level;
         overlayManager.gameObject.SetActive(true);
         overlayManager.SetActiveChildPanel<MissionPanel>();
         overlayManager.SetMissionDetail(playingLevel.moneyGoal, playingLevel.customerGoal, 0);
-        
-        
+        overlayManager.SetPauseDetail(playingLevel.id);
+
+
         if (playingLevel.tutorialDB != null && !skipTutorial)
         {
             tutorialViewPrefab.gameObject.SetActive(true);
@@ -95,9 +74,17 @@ public class GameManager : MonoBehaviour
 
         soundManager = GameObject.FindObjectOfType<SoundController>();
         currentTime = countdownTime;
-        GameSystem.PlayerLevel = 0;
         SetActiveCustomer();
+        SetActiveGameTable();
     }
+
+    private void Start()
+    {
+        
+        SetLevelConfig();
+
+    }
+
 
     private void SetActiveCustomer() 
     {
@@ -108,14 +95,21 @@ public class GameManager : MonoBehaviour
 
     private void SetActiveGameTable() 
     {
+        tableHandler.DisableAllShelves();
+        tableHandler.DisapleMixtureInShelves();
+        //print(playingLevel.id);
         for (int i = 0; i < playingLevel.MixtureShelfCollection.Length; i++)
         {
             tableHandler.SetActiveShelves(playingLevel.MixtureShelfCollection[i]);
         }
-
         for (int i = 0; i < playingLevel.MixtureCollection.Length; i++)
         {
             tableHandler.SetActiveProducts(playingLevel.MixtureCollection[i]);
+        }
+        for (int i = 0; i < playingLevel.DrinkCollection.Length; i++)
+        {
+            tableHandler.SetActiveDrinks(playingLevel.DrinkCollection[i]);
+
         }
 
         tableHandler.SetActivePlates(playingLevel.plate1Count, playingLevel.plate2Count);
@@ -143,6 +137,29 @@ public class GameManager : MonoBehaviour
 
             uiManager.UpdateCountdownText(minutes, seconds);
 
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("Game");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (IsPaused)
+                {
+                    overlayManager.gameObject.SetActive(false);
+                    gameState = GameState.Game;
+                    overlayManager.DeactivatePanel<PausePanel>();
+                    IsPaused = false;
+                }
+                else
+                {
+                    overlayManager.gameObject.SetActive(true);
+                    gameState = GameState.Pause;
+                    overlayManager.SetActiveChildPanel<PausePanel>();
+                    IsPaused = true;
+                }
+            }
+
         }
     }
 
@@ -163,7 +180,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < spotForCustomers.Length; i++)
         {
 
-            if (i <= playingLevel.MaxCudtomersQueue && !IsEarlyCustomer()) 
+            if (i < playingLevel.MaxCudtomersQueue && !IsEarlyCustomer()) 
             {
                 spotForCustomers[i].gameObject.SetActive(true);
             }

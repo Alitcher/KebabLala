@@ -54,6 +54,12 @@ namespace Singleton
             {
                 Destroy(gameObject);
             }
+            else
+            {
+                DontDestroyOnLoad(gameObject);
+                instance = this as T;
+                isDestroyed = false;
+            }
 
             DontDestroyOnLoad(this);
             isDestroyed = false;

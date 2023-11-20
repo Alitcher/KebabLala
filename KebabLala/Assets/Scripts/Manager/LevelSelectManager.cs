@@ -1,4 +1,5 @@
 ﻿using Singleton;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelSelectManager : AliciaGenericSingleton<LevelSelectManager>
