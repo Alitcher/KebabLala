@@ -1,12 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-
-public enum ProductData 
+﻿public enum ProductData 
 {
+    None,
     Drink,
-    Meal,
+    Mixture,
     Snack
-
 }

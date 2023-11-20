@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa366ae21fd3ee844a57c2423b1dd20a, type: 3}
   m_Name: level-0
   m_EditorClassIdentifier: 
-  id: 
+  id: 0
   moneyGoal: 0
   customerGoal: 6
   timeLimited: 999
@@ -23,5 +23,8 @@ MonoBehaviour:
   timeSlack: 0
   tutorialDB: {fileID: 11400000, guid: f4c159d5828a4054c96c0b57d9605af0, type: 2}
   MixtureCollection: 
+  DrinkCollection: 0100000002000000
   MixtureShelfCollection: 01000000
   targetMask: []
+  plate1Count: 0
+  plate2Count: 0

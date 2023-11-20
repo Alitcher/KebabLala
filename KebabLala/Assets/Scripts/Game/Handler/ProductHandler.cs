@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class ProductHandler : MonoBehaviour
 {
+    public KebabMixtures ProductType;
+    public Drinks DrinkType;
     public Drink product;
     public Food mealPlate;
     private bool handed = false;
     private bool isCorrectProduct = false;
 
     public bool onPlate;
-
+    public ProductHandler otherHandler;
     CustomerHandler customer;
     [SerializeField] private PlateHandler plate;
 
@@ -20,7 +22,12 @@ public class ProductHandler : MonoBehaviour
         if (collision.tag == "customer")
         {
             customer = collision.gameObject.GetComponent<CustomerHandler>();
-            Debug.Log($"Deliver {this.name} to {customer.name}");
+            if (customer.wantsKebab() && !GameSystem.Instance.gameManager.IsEarlyCustomer() && plate!= null && plate.kebabData != null)
+            {
+                Debug.Log("Match " + plate.kebabData.CheckMatch(customer.KebabData.Mixtures));
+                plate.SetButtonAppearance();
+                customer.SetKebabHanded();
+            }
             handed = true;
         }
         else if (collision.tag == "plate")
@@ -33,7 +40,7 @@ public class ProductHandler : MonoBehaviour
             customer = collision.gameObject.GetComponent<CustomerHandler>();
             plate = this.gameObject.GetComponent<PlateHandler>();
             handed = true;
-            Debug.Log($"Deliver Kebab to {customer.name}");
+            //Debug.Log($"Deliver Kebab to {customer.name}");
 
         }
     }
@@ -53,15 +60,17 @@ public class ProductHandler : MonoBehaviour
         if (customer == null)
             return false;
 
-        bool checkMatch = (this.tag == "plate") ? customer.CheckProductMatch(ref plate.FoodCollection) 
+        bool checkMatch = (this.tag == "plate") ? customer.KebabData.CheckMatch(customer.KebabData.Mixtures)
             : customer.CheckProductMatch(product.id, ref handed);
 
-        if (checkMatch && handed && (this.tag != "plate")) 
+        if (checkMatch && handed && (this.tag != "plate"))
         {
             GameSystem.Instance.gameManager.EarnMoney(product.sell);
         }
-        else if(checkMatch && handed && (this.tag == "plate"))
+        else if (checkMatch /*&& handed */&& (this.tag == "plate"))
         {
+            plate.SetButtonAppearance();
+            customer.SetKebabHanded();
             plate.ClearCollection();
             GameSystem.Instance.gameManager.increaseTime(5);
             GameSystem.Instance.gameManager.EarnMoney(150);

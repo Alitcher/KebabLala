@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5a4101e5b276844a6ea036ef7d74c9, type: 3}
   m_Name: KebabFullPlate
   m_EditorClassIdentifier: 
+  id: 999
+  price: 0
   productType: 1
   avatar: {fileID: 0}
   foodName: KebabFullPlate
-  hasMeat: 1
-  hasVeggie: 1
-  hasTortilla: 1
-  id: 999
-  price: 0
+  isInPlate: 000000000000000000

@@ -1,13 +1,21 @@
 ﻿public enum KebabMixtures
 {
     None,
-    Tortilla,
-    Beef,
     Lettuce,
-    Onion,
     Tomato,
-    Cucumber,
+    Tortilla,
+    Onion,
     Fries,
-    Garlic,
-    Kechup
+    Cucumber,
+    Doner,
+    GarlicSauce,
+    Ketchup
+}
+
+public enum Drinks
+{
+    None,
+    Cola,
+    Ayran,
+    Cay
 }

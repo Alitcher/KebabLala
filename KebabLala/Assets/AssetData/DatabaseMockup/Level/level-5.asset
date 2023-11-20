@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa366ae21fd3ee844a57c2423b1dd20a, type: 3}
   m_Name: level-5
   m_EditorClassIdentifier: 
-  id: 
-  moneyGoal: 0
-  customerGoal: 0
-  timeLimited: 999
+  id: 5
+  moneyGoal: 40
+  customerGoal: 30
+  timeLimited: 555
   foodWasteLimited: 999
   customersInQueue: 1
   MaxOrder: 4
   MaxCudtomersQueue: 1
   timeSlack: 0
   tutorialDB: {fileID: 0}
-  MixtureCollection: 04000000050000000300000006000000
+  MixtureCollection: 040000000200000001000000060000000800000007000000090000000300000005000000
+  DrinkCollection: 0100000002000000
   MixtureShelfCollection: 01000000020000000600000003000000040000000500000007000000
   targetMask: []
+  plate1Count: 1
+  plate2Count: 1

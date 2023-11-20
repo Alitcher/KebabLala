@@ -21,3 +21,10 @@ MonoBehaviour:
     tutorial: {fileID: 0}
   - level: {fileID: 11400000, guid: 9542739738bd0f14eb7dabf960f98211, type: 2}
     tutorial: {fileID: 0}
+  - level: {fileID: 11400000, guid: 8e76e34445a260946a2c12b56aa193a0, type: 2}
+    tutorial: {fileID: 0}
+  - level: {fileID: 11400000, guid: 90ade547cbcd99e4e8ee35c97e62500b, type: 2}
+    tutorial: {fileID: 0}
+  LevelReset:
+    level: {fileID: 0}
+    tutorial: {fileID: 0}

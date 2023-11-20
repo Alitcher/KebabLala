@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
                 customersInGame[i].gameObject.SetActive(true);
                 soundManager.Play("pop");
             }
-            else if (i > playingLevel.customersInQueue) 
+            else if (i > playingLevel.MaxCudtomersQueue) 
             {
                 spotForCustomers[i].gameObject.SetActive(false);
             }
