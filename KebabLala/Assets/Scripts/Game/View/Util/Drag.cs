@@ -36,13 +36,8 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         // Follow the position of the mouse cursor while dragging
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-        if (this.tag == "plate")
-        {
-            foreach (GameObject item in GameSystem.Instance.gameManager.IngredientShelves)
-            {
-                item.SetActive(false);
-            }
-        }
+
+        print("begin drag " + this.name);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -51,15 +46,6 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
             return;
         // Disable raycasting and set the alpha of the canvas group to 1
         bool match = handler.isValidToCustomer();
-        if (this.tag == "plate")
-        {
-
-            foreach (GameObject item in GameSystem.Instance.gameManager.IngredientShelves)
-            {
-                item.SetActive(true);
-            }
-        }
-
 
         //if(GameManager.Instance.customersInGame)
         rectTransform.anchoredPosition = OriginalPos;

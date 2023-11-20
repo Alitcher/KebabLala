@@ -9,6 +9,7 @@ public class GameSystem : AliciaGenericSingleton<GameSystem>
 {
     public GameManager gameManager;
     public Action OnGameSceneActive;
+    public static int PlayerLevel = 1;
 
     public override void Awake()
     {
@@ -19,8 +20,12 @@ public class GameSystem : AliciaGenericSingleton<GameSystem>
 
     internal void SetPlayingLevel(ref Level level, ref Tutorial tutorial)
     {
-        if(KebabLalaSystem.Instance.GetCurrentScene() == 2)
+        if (KebabLalaSystem.Instance.GetCurrentScene() == 2) 
+        {
+        
             gameManager.playingLevel = level;
+            //gameManager.SetGameField();
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
