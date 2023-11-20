@@ -1071,6 +1071,12 @@ PrefabInstance:
       objectReference: {fileID: 1831978749}
     - target: {fileID: 509154782437832756, guid: 4209030ddeb474c448f7ff7a0dde70b1,
         type: 3}
+      propertyPath: playingLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: b163b0b50f70d7142a595cd2dc1040ac,
+        type: 2}
+    - target: {fileID: 509154782437832756, guid: 4209030ddeb474c448f7ff7a0dde70b1,
+        type: 3}
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 67262870}
@@ -1219,6 +1225,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 509154783020589578, guid: 4209030ddeb474c448f7ff7a0dde70b1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 509154783020589578, guid: 4209030ddeb474c448f7ff7a0dde70b1,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 509154783020589578, guid: 4209030ddeb474c448f7ff7a0dde70b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 509154783020589578, guid: 4209030ddeb474c448f7ff7a0dde70b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 509154783415258213, guid: 4209030ddeb474c448f7ff7a0dde70b1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -1243,11 +1269,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8397650117210397757, guid: 4209030ddeb474c448f7ff7a0dde70b1,
-        type: 3}
-      propertyPath: m_Spacing
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8566339815957917674, guid: 4209030ddeb474c448f7ff7a0dde70b1,
         type: 3}
@@ -1507,6 +1528,36 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1855845398}
+    - target: {fileID: 7576010598511049389, guid: f3e5fcda15bd30d468a8cc50b6bcc602,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576010598511049389, guid: f3e5fcda15bd30d468a8cc50b6bcc602,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576010598511049389, guid: f3e5fcda15bd30d468a8cc50b6bcc602,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1729531787}
+    - target: {fileID: 7576010598511049389, guid: f3e5fcda15bd30d468a8cc50b6bcc602,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576010598511049389, guid: f3e5fcda15bd30d468a8cc50b6bcc602,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576010598511049389, guid: f3e5fcda15bd30d468a8cc50b6bcc602,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3e5fcda15bd30d468a8cc50b6bcc602, type: 3}
 --- !u!1001 &5967793049958735175
