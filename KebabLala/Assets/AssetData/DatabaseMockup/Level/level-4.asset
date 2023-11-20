@@ -15,12 +15,11 @@ MonoBehaviour:
   id: 4
   moneyGoal: 0
   customerGoal: 15
-  timeLimited: 999
+  timeLimited: 100
   foodWasteLimited: 999
-  customersInQueue: 1
   MaxOrder: 4
-  MaxCudtomersQueue: 1
-  timeSlack: 0
+  MaxCudtomersQueue: 2
+  timeSlack: 0.05
   tutorialDB: {fileID: 0}
   MixtureCollection: 0400000002000000010000000600000008000000070000000900000003000000
   DrinkCollection: 0100000002000000
