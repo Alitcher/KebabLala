@@ -29,7 +29,7 @@ RectTransform:
   m_Children:
   - {fileID: 4952772924091501050}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -142,7 +142,7 @@ RectTransform:
   m_Children:
   - {fileID: 3254186145324332498}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3344354935924791018}
   m_Layer: 5
-  m_Name: fries
+  m_Name: Fries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,7 +343,7 @@ RectTransform:
   m_Children:
   - {fileID: 4562339314101835305}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -360,7 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7969075838685803823}
   m_Layer: 5
-  m_Name: cucumber
+  m_Name: Cucumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,7 +380,7 @@ RectTransform:
   - {fileID: 8508571473239649740}
   - {fileID: 8835968729416815933}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -678,7 +678,7 @@ RectTransform:
   m_Children:
   - {fileID: 8180183336911522918}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -788,7 +788,7 @@ RectTransform:
   m_Children:
   - {fileID: 8180183337430018353}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -898,7 +898,7 @@ RectTransform:
   m_Children:
   - {fileID: 8180183337385942225}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1232,7 +1232,7 @@ RectTransform:
   - {fileID: 8180183337407234156}
   - {fileID: 8180183337109906932}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1274,6 +1274,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8024153000330729329}
   - {fileID: 8180183337039541155}
   - {fileID: 8180183338739342823}
   - {fileID: 8180183337330827269}
@@ -1281,7 +1282,6 @@ RectTransform:
   - {fileID: 3344354935924791018}
   - {fileID: 7969075838685803823}
   - {fileID: 7087827471034722972}
-  - {fileID: 8024153000330729329}
   - {fileID: 5216592388054580937}
   - {fileID: 7293394991675613152}
   m_Father: {fileID: 0}
@@ -1356,6 +1356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2322ef7224d07674e9b931d429ca214e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductType: 0
+  DrinkType: 0
   product: {fileID: 0}
   mealPlate: {fileID: 11400000, guid: 665fe1e06f4cb68499f80d6caff0913d, type: 2}
   onPlate: 0
@@ -1372,13 +1374,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd002f88b74d5444c83f33b1a3a96ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kebabData: {fileID: 0}
   FoodCollection:
   - {fileID: 8180183337039541164}
   - {fileID: 8180183338739342816}
   - {fileID: 8180183337330827270}
   - {fileID: 8180183336897369302}
+  - {fileID: 4283906204272026710}
+  - {fileID: 4989278537850610292}
   - {fileID: 118976235922231489}
-  clearBtn: {fileID: 506672972384093696}
+  - {fileID: 6987768119902218576}
+  - {fileID: 9186703773040697259}
+  clearBtn: {fileID: 3586254883059908984}
 --- !u!225 &1478363894
 CanvasGroup:
   m_ObjectHideFlags: 0
