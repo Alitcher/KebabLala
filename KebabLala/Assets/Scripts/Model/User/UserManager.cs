@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,15 +8,11 @@ public class UserManager : MonoBehaviour
 
     public User UserData;
 
-    // Start is called before the first frame update
-    void Start()
+    public void ClearAllPlayerPrefs() 
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (string name in Enum.GetValues(typeof(UserDataSavedList)))
+        {
+            PlayerPrefs.DeleteKey(name);
+        }
     }
 }
