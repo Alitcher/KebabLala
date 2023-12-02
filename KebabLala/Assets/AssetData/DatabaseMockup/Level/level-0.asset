@@ -17,7 +17,6 @@ MonoBehaviour:
   customerGoal: 6
   timeLimited: 999
   foodWasteLimited: 999
-  customersInQueue: 1
   MaxOrder: 3
   MaxCudtomersQueue: 1
   timeSlack: 0
