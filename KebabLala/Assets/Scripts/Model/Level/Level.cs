@@ -8,6 +8,8 @@ public class Level : ScriptableObject
     public string id;
     public int moneyGoal;
     public int customerGoal;
+    public int happyGoal;
+    public int upsetLimit;
     public int timeLimited = 999;
     public int foodWasteLimited = 999;
 

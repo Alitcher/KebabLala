@@ -48,11 +48,12 @@ public class GameOverlayManager : MonoBehaviour
         Invoke("DeactivateMissionPanel", 3f);
     }
 
-    public void SetSummaryDetail(int income, int customerCount, int happyCount) 
+    public void SetSummaryDetail(int income, int customerCount, int happyCount, int upsetCount) 
     {
         gameSummaryPanel.SetIncome(income.ToString());
         gameSummaryPanel.SetCustomersTotal(customerCount.ToString());
         gameSummaryPanel.SetHappyCustomersTotal(happyCount.ToString());
+        gameSummaryPanel.SetUpsetCustomersTotal(upsetCount.ToString());
     }
 
     public void SetPauseDetail(string level)

@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     int minutes => Mathf.FloorToInt(currentTime / 60f);
     int seconds => Mathf.FloorToInt(currentTime % 60f);
 
+    private int upsetCount, happyCount;
+
     private void Awake()
     {
         InvokeRepeating("SpawnRandomCustomer", 0f, 1.5f);
@@ -174,8 +176,19 @@ public class GameManager : MonoBehaviour
     {
         soundManager.Play2("coins collected4");
         customerCount++;
+        happyCount++;
         uiManager.UpdateCustomerCount(customerCount.ToString(), playingLevel.customerGoal.ToString());
         CheckCustomerComplete();
+    }
+
+    public void SetTimeupCustormer() 
+    {
+        upsetCount++;
+    }
+
+    private void CheckLevelFailed() 
+    {
+    //angry face count, discard food count
     }
 
     public void SpawnRandomCustomer()
@@ -223,7 +236,7 @@ public class GameManager : MonoBehaviour
             BGM.Stop();
             overlayManager.gameObject.SetActive(true);
             overlayManager.SetActiveChildPanel<GameSummaryPanel>();
-            overlayManager.SetSummaryDetail(PlayerMoney, customerCount, 0);
+            overlayManager.SetSummaryDetail(PlayerMoney, customerCount, happyCount, upsetCount);
 
         }
     }

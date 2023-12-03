@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 5
   moneyGoal: 40
-  customerGoal: 30
+  customerGoal: 15
+  happyGoal: 0
+  upsetLimit: 0
   timeLimited: 120
   foodWasteLimited: 999
   MaxOrder: 4

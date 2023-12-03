@@ -18,7 +18,7 @@ MonoBehaviour:
   timeLimited: 999
   foodWasteLimited: 999
   MaxOrder: 3
-  MaxCudtomersQueue: 1
+  MaxCudtomersQueue: 2
   timeSlack: 0
   tutorialDB: {fileID: 11400000, guid: f4c159d5828a4054c96c0b57d9605af0, type: 2}
   MixtureCollection: 
