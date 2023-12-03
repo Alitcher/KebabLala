@@ -508,7 +508,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.7, y: 30}
+  m_AnchoredPosition: {x: -40.5, y: 30}
   m_SizeDelta: {x: 178.54346, y: 80.79581}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2366085249283751567
@@ -538,9 +538,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '$123
-
-'
+  m_text: 22
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f07b20c2e4b673140a58ca1579e52eee, type: 2}
   m_sharedMaterial: {fileID: 3204815075527753457, guid: f07b20c2e4b673140a58ca1579e52eee,
@@ -568,8 +566,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -939,7 +937,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '$123
+  m_text: '123
 
 '
   m_isRightToLeft: 0
@@ -1544,7 +1542,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -170, y: 30}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3162600253726510518
 CanvasRenderer:
@@ -1911,7 +1909,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: EXIT
+  m_Text: NEXT
 --- !u!1 &2721556858917824682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,7 +1923,7 @@ GameObject:
   - component: {fileID: 8352586202148712546}
   - component: {fileID: 2998946557135917398}
   m_Layer: 5
-  m_Name: GameButtonBlue (2)
+  m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2030,7 +2028,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8352586202148712546}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3770705107481940736}
+        m_MethodName: Menu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2746981349803912630
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,7 +2455,7 @@ GameObject:
   - component: {fileID: 9180080386454604312}
   - component: {fileID: 2671211400062888748}
   m_Layer: 5
-  m_Name: GameButtonBlue (1)
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2551,7 +2560,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9180080386454604312}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3770705107481940736}
+        m_MethodName: RestartLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3861473800964745358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2647,8 +2667,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20.900024, y: 107}
-  m_SizeDelta: {x: 109.11047, y: -726.91473}
+  m_AnchoredPosition: {x: -20.900024, y: 40}
+  m_SizeDelta: {x: 109.11047, y: -592.83307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7342223265281711963
 CanvasRenderer:
@@ -2985,7 +3005,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 314, y: -98}
+  m_AnchoredPosition: {x: -138, y: -196.00002}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8688148081593801363
@@ -4197,7 +4217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 63.954, y: -0.55756}
+  m_AnchoredPosition: {x: 83.4, y: -0.55756}
   m_SizeDelta: {x: 127.90723, y: 57.88153}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7110920303115880545
@@ -4227,9 +4247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '$123
-
-'
+  m_text: 22
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f07b20c2e4b673140a58ca1579e52eee, type: 2}
   m_sharedMaterial: {fileID: 3204815075527753457, guid: f07b20c2e4b673140a58ca1579e52eee,
@@ -4257,8 +4275,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.43
-  m_fontSizeBase: 22.43
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4740,7 +4758,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -25.817, y: -0.000011444}
-  m_SizeDelta: {x: 51.633545, y: 51.633545}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7609611691447384920
 CanvasRenderer:
@@ -5034,7 +5052,7 @@ GameObject:
   - component: {fileID: 3699526341432499097}
   - component: {fileID: 7576010598511049389}
   m_Layer: 5
-  m_Name: GameButtonBlue
+  m_Name: ResumeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5139,7 +5157,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3699526341432499097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6477654905804417430}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5119304858053734909}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7382165985794191860
 GameObject:
   m_ObjectHideFlags: 0
@@ -5693,7 +5733,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '$123
+  m_text: '123
 
 '
   m_isRightToLeft: 0
@@ -5801,7 +5841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100.5, y: -354}
+  m_AnchoredPosition: {x: 135, y: -354}
   m_SizeDelta: {x: 199.41455, y: 85.531555}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5907841848896435929
@@ -6563,7 +6603,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: READ
+  m_Text: BACK
 --- !u!1 &8973168436004720534
 GameObject:
   m_ObjectHideFlags: 0
@@ -6580,7 +6620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &904077719200471022
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6600,7 +6640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 387, y: -229}
+  m_AnchoredPosition: {x: 249, y: -224}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4245650958369909885
@@ -6682,7 +6722,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Missions:'
+  m_text: 'Level:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f07b20c2e4b673140a58ca1579e52eee, type: 2}
   m_sharedMaterial: {fileID: 3204815075527753457, guid: f07b20c2e4b673140a58ca1579e52eee,
@@ -6769,7 +6809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8734410409509358115
 RectTransform:
   m_ObjectHideFlags: 0
