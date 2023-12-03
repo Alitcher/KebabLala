@@ -5421,36 +5421,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1484518874064543582, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042212247599396177, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4916960772857984134, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6864799691793115091, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7775814505785231637, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8759233905137267325, guid: 43f7314d3c0102a4aba0ec998f359d22,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43f7314d3c0102a4aba0ec998f359d22, type: 3}
 --- !u!224 &4180260987858036676 stripped

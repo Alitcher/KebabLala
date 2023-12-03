@@ -54,6 +54,7 @@ public class CustomerHandler : MonoBehaviour
             BubbleParent.SetActive(false);
             reaction.sprite = reactEmoji[1];
             reaction.gameObject.SetActive(true);
+            GameSystem.Instance.gameManager.SetTimeupCustormer();
             DestroyThis();
         }
     }
@@ -181,13 +182,7 @@ public class CustomerHandler : MonoBehaviour
     }
 
     [SerializeField] private Image fillImage;
-    private void SetSliderColor()
-    {
-        if (WaitingBar.value < 0.2f)
-        {
-            //WaitingBar.colors.normalColor = Color.Lerp(Color.red, Color.green, WaitingBar.value / 20);
-        }
-    }
+
 
     private void CountdownOrder()
     {

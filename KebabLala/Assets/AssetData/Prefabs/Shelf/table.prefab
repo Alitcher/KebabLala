@@ -185,6 +185,7 @@ MonoBehaviour:
   product: {fileID: 11400000, guid: a4bc5f1bb5ae0ff43bc481d0af2b5eaa, type: 2}
   mealPlate: {fileID: 0}
   onPlate: 0
+  otherHandler: {fileID: 0}
   plate: {fileID: 0}
 --- !u!225 &416663207110073210
 CanvasGroup:
@@ -766,7 +767,7 @@ GameObject:
   - component: {fileID: 2429586793753123250}
   - component: {fileID: 3544618801281825497}
   m_Layer: 5
-  m_Name: Kechup
+  m_Name: Ketchup
   m_TagString: tomato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -860,6 +861,7 @@ MonoBehaviour:
   product: {fileID: 11400000, guid: fed69b9ca4007f94d836011c1e7260dd, type: 2}
   mealPlate: {fileID: 0}
   onPlate: 0
+  otherHandler: {fileID: 0}
   plate: {fileID: 0}
 --- !u!225 &2759214230914943676
 CanvasGroup:
@@ -1031,6 +1033,7 @@ MonoBehaviour:
   product: {fileID: 11400000, guid: ae5f289ecd986ef4eb91f9c1035f466a, type: 2}
   mealPlate: {fileID: 0}
   onPlate: 0
+  otherHandler: {fileID: 0}
   plate: {fileID: 0}
 --- !u!225 &8546677090640852583
 CanvasGroup:
@@ -1368,6 +1371,7 @@ MonoBehaviour:
   product: {fileID: 11400000, guid: ae5f289ecd986ef4eb91f9c1035f466a, type: 2}
   mealPlate: {fileID: 0}
   onPlate: 0
+  otherHandler: {fileID: 0}
   plate: {fileID: 0}
 --- !u!225 &3564588807903067565
 CanvasGroup:
@@ -2096,6 +2100,7 @@ MonoBehaviour:
   product: {fileID: 11400000, guid: a25fef65452eecf428c2933e45bae303, type: 2}
   mealPlate: {fileID: 0}
   onPlate: 0
+  otherHandler: {fileID: 0}
   plate: {fileID: 0}
 --- !u!225 &3564588808473989648
 CanvasGroup:
@@ -2822,6 +2827,7 @@ MonoBehaviour:
   product: {fileID: 11400000, guid: 1a699911ddb567e4eb158a1567f76277, type: 2}
   mealPlate: {fileID: 0}
   onPlate: 0
+  otherHandler: {fileID: 0}
   plate: {fileID: 0}
 --- !u!225 &3564588808938385034
 CanvasGroup:
@@ -3047,6 +3053,7 @@ MonoBehaviour:
   product: {fileID: 11400000, guid: dfbe2ad041351c840845287b4014bfb0, type: 2}
   mealPlate: {fileID: 0}
   onPlate: 0
+  otherHandler: {fileID: 0}
   plate: {fileID: 0}
 --- !u!225 &3564588809187182887
 CanvasGroup:
@@ -3905,6 +3912,7 @@ MonoBehaviour:
   product: {fileID: 11400000, guid: 1a699911ddb567e4eb158a1567f76277, type: 2}
   mealPlate: {fileID: 0}
   onPlate: 0
+  otherHandler: {fileID: 0}
   plate: {fileID: 0}
 --- !u!225 &6975161924846597673
 CanvasGroup:
@@ -4698,6 +4706,7 @@ MonoBehaviour:
   product: {fileID: 11400000, guid: cf3acaa306f3e514fb46ba7825318371, type: 2}
   mealPlate: {fileID: 0}
   onPlate: 0
+  otherHandler: {fileID: 0}
   plate: {fileID: 0}
 --- !u!225 &1673309916793324981
 CanvasGroup:
