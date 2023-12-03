@@ -126,7 +126,7 @@ public class CustomerHandler : MonoBehaviour
         id = data.id;
 
         drinksCount = GameSystem.Instance.gameManager.IsEarlyCustomer() ? 1 : UnityEngine.Random.Range(1, GameSystem.Instance.gameManager.playingLevel.MaxOrder);
-        kebabCount = (GameSystem.Instance.gameManager.IsEarlyCustomer()) ? 0 : 1;//(!wantsKebab()) ? 0 : 1;//Random.Range(1, GameSystem.Instance.gameManager.playingLevel.MaxOrder);
+        kebabCount = (GameSystem.Instance.gameManager.IsEarlyCustomer() || GameSystem.PlayerLevel == 0) ? 0 : 1;
 
         desiredFoodCount = drinksCount + kebabCount;
 
