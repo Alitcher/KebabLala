@@ -52,8 +52,10 @@ public class GameOverlayManager : MonoBehaviour
     {
         gameSummaryPanel.SetIncome(income.ToString());
         gameSummaryPanel.SetCustomersTotal(customerCount.ToString());
-        gameSummaryPanel.SetHappyCustomersTotal(happyCount.ToString());
-        gameSummaryPanel.SetUpsetCustomersTotal(upsetCount.ToString());
+
+        gameSummaryPanel.SetUpsetCustomersTotal(upsetCount > 0 ? upsetCount.ToString() : null);
+        gameSummaryPanel.SetHappyCustomersTotal(happyCount > 0 ? happyCount.ToString() : null);
+
     }
 
     public void SetPauseDetail(string level)

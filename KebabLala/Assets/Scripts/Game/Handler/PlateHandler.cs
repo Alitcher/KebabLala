@@ -13,7 +13,7 @@ public class PlateHandler : MonoBehaviour
     [SerializeField] private Button clearBtn;
     // Start is called before the first frame update
 
-    private string id;
+    public string id { get; private set; }
 
     // call this function when the player drag an ingredient(aka mixture) into the plate. the total number of ingredients in plate is fixed which is mixture[9]
     public void SetActiveCollection(string foodName)

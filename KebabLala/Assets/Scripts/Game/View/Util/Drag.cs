@@ -34,6 +34,7 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         // Follow the position of the mouse cursor while dragging
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        handler.SetDragging(true);
     }
 
     //plate on table only use this function
@@ -46,7 +47,7 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         if (handler == null)
             return;
-
+        handler.SetDragging(false);
         // Disable raycasting and set the alpha of the canvas group to 1
 
         bool match = handler.isValidToCustomer();

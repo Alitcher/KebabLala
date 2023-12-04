@@ -28,16 +28,27 @@ public class GameSummaryPanel : Overlay
 
     public void SetHappyCustomersTotal(string happyCustomersTotal)
     {
-        happyCustomers.SetDescription(ref happyCustomersTotal);
+        SetTextKeyPairVisibility(ref happyCustomers, happyCustomersTotal);
     }
 
     public void SetUpsetCustomersTotal(string upsetCustomersTotal)
     {
-        upsetCustomers.SetDescription(ref upsetCustomersTotal);
+        SetTextKeyPairVisibility(ref upsetCustomers, upsetCustomersTotal);
     }
 
     public void SetVisitedCustomersTotal(string leftoffCustomer)
     {
         leftCustomers.SetDescription(ref leftoffCustomer);
+    }
+
+    private void SetTextKeyPairVisibility(ref TextKeyPair customerTextKeyPair, string customersTotal)
+    {
+        bool isActive = !string.IsNullOrEmpty(customersTotal);
+        customerTextKeyPair.gameObject.SetActive(isActive);
+
+        if (isActive)
+        {
+            customerTextKeyPair.SetDescription(ref customersTotal);
+        }
     }
 }

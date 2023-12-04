@@ -10,14 +10,18 @@ public class ProductHandler : MonoBehaviour
     public Drink product;
     public Food mealPlate;
     private bool handed = false;
-    private bool isCorrectProduct = false;
 
     public bool onPlate;
     public ProductHandler otherHandler;
     CustomerHandler customer;
     [SerializeField] private PlateHandler plate;
 
-    
+    private bool isDragging = false; 
+    public void SetDragging(bool isOnDrag) 
+    {
+    isDragging = isOnDrag;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "customer")
@@ -25,13 +29,12 @@ public class ProductHandler : MonoBehaviour
             customer = collision.gameObject.GetComponent<CustomerHandler>();
             if (customer.wantsKebab() && !GameSystem.Instance.gameManager.IsEarlyCustomer() && plate!= null && plate.kebabData != null)
             {
-                Debug.Log("Match " + plate.kebabData.CheckMatch(customer.KebabData.Mixtures));
                 plate.SetButtonAppearance();
                 customer.SetKebabHanded();
             }
             handed = true;
         }
-        else if (collision.tag == "plate")
+        else if (collision.tag == "plate" && isDragging)
         {
             plate = collision.gameObject.GetComponent<PlateHandler>();
             isOnPlate();
@@ -41,8 +44,6 @@ public class ProductHandler : MonoBehaviour
             customer = collision.gameObject.GetComponent<CustomerHandler>();
             plate = this.gameObject.GetComponent<PlateHandler>();
             handed = true;
-            //Debug.Log($"Deliver Kebab to {customer.name}");
-
         }
     }
 
@@ -53,38 +54,83 @@ public class ProductHandler : MonoBehaviour
 
     private void ResetHanded()
     {
+        customer = null;
         handed = false;
+    }
+
+    private bool IsCustomerValidForProduct()
+    {
+        return !(customer == null || (this.tag == "plate" && customer.KebabData == null));
+    }
+
+    private bool CheckProductMatchWithCustomer()
+    {
+        return (this.tag == "plate") ? customer.KebabData.CheckMatch(plate.id)//customer.KebabData.CheckMatch(plate.FoodCollection)
+                                     : customer.CheckProductMatch(product.id, ref handed);
     }
 
     public bool isValidToCustomer()
     {
-        if (customer == null) 
+        // Checks if the customer is null or if the product is a plate without kebab data
+        if (!IsCustomerValidForProduct())
         {
             return false;
         }
-        if (this.tag == "plate" && customer.KebabData == null) 
-        { 
-            return false; 
-        }
 
-        bool checkMatch = (this.tag == "plate") ? customer.KebabData.CheckMatch(customer.KebabData.Mixtures)
-                                                : customer.CheckProductMatch(product.id, ref handed);
+        // Check if the product matches what the customer wants
+        bool checkMatch = CheckProductMatchWithCustomer();
 
-        if (checkMatch && handed && (this.tag != "plate"))
+        // Handles the logic when the product matches
+        if (checkMatch)
         {
-            GameSystem.Instance.gameManager.EarnMoney(product.sell);
-        }
-        else if (checkMatch /*&& handed */&& (this.tag == "plate"))
-        {
-            plate.SetButtonAppearance();
-            customer.SetKebabHanded();
-            plate.ClearCollection();
-            GameSystem.Instance.gameManager.increaseTime(5);
-            GameSystem.Instance.gameManager.EarnMoney(150);
-
+            //disable customer plate
+           // customer.DisableKebabPlate();
+            HandleMatchingProduct();
         }
 
         return checkMatch;
+    }
+
+    private void HandleMatchingProduct()
+    {
+        if (this.tag != "plate") // For products like ayran and cola
+        {
+            HandleDrinkProduct();
+        }
+        else // For kebab plates
+        {
+            HandleKebabPlate();
+        }
+    }
+
+    private void HandleDrinkProduct()
+    {
+        int currentProductLevel = GetCurrentProductLevel();
+        GameSystem.Instance.gameManager.EarnMoney(product.sell[currentProductLevel]);
+    }
+
+    private int GetCurrentProductLevel()
+    {
+        switch (product.name)
+        {
+            case "Cola": return PlayerPrefs.GetInt(MixtureSavedList.Cola.ToString());
+            case "Ayran": return PlayerPrefs.GetInt(MixtureSavedList.Ayran.ToString());
+            default: return 0;
+        }
+    }
+
+    private void HandleKebabPlate()
+    {
+        plate.SetButtonAppearance();
+        customer.SetKebabHanded();
+        plate.ClearCollection();
+        GameSystem.Instance.gameManager.increaseTime(5);
+        GameSystem.Instance.gameManager.EarnMoney(150);
+    }
+
+    private void CalculateEarn() 
+    {
+    
     }
 
     internal bool isOnPlate()

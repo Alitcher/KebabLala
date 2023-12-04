@@ -9,7 +9,7 @@ public class KebabData : MonoBehaviour
     public Food kebabData;
     public Food kebabDataScriptable;
 
-    public GameObject[] Mixtures => Ingredients;
+    public GameObject[] CustomerMixtures => Ingredients;
     [SerializeField] private GameObject[] Ingredients;
 
     public void SetActiveIndredients()
@@ -42,20 +42,42 @@ public class KebabData : MonoBehaviour
 
     internal bool CheckMatch(GameObject[] kebabDatas)
     {
-        bool match = true;
-        for (int i = 0; i < Mixtures.Length; i++)
+        for (int i = 0; i < CustomerMixtures.Length; i++)
         {
-            if (!Mixtures[i].activeSelf)
+            // Check if both elements are active or not active.
+            if (kebabDatas[i].activeSelf != CustomerMixtures[i].activeSelf)
             {
-                continue;
+                // If one is active and the other is not, this is not a match.
+                return false;
             }
-            if (kebabDatas[i].name != Mixtures[i].name)
+
+            // If both elements are active, check if their names match.
+            if (kebabDatas[i].activeSelf && CustomerMixtures[i].activeSelf)
             {
-                print($"{kebabDatas[i].name} and {Mixtures[i].name}");
-                match = false;
+                if (kebabDatas[i].name != CustomerMixtures[i].name)
+                {
+                    // If the names don't match, it's not a perfect match.
+                    return false;
+                }
             }
         }
+
+        // Deactivate the game object after checking.
         this.gameObject.SetActive(false);
-        return match;
+
+        // If the loop completes without returning false, it's a match.
+        return true;
+    }
+
+    internal bool CheckMatch(string id)
+    {
+        bool matched = kebabData.id == id;
+
+        if (matched) 
+        {
+            this.gameObject.SetActive(false);
+        }
+
+        return matched;
     }
 }

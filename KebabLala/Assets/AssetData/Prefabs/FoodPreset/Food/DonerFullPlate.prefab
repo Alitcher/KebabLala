@@ -648,7 +648,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Clear(-10)
+  m_Text: Clear
 --- !u!1 &8180183336897369302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,6 +1361,7 @@ MonoBehaviour:
   product: {fileID: 0}
   mealPlate: {fileID: 11400000, guid: 665fe1e06f4cb68499f80d6caff0913d, type: 2}
   onPlate: 0
+  otherHandler: {fileID: 0}
   plate: {fileID: 1478363893}
 --- !u!114 &1478363893
 MonoBehaviour:
