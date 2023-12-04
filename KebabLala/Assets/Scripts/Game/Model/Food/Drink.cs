@@ -7,10 +7,10 @@ public class Drink : ScriptableObject
 {
     public ProductData productType = ProductData.Drink;
     public Sprite avatar;
-    public string drinkName;
+    public string productName;
     public string id;
-    public int sell;
-    public int buy;
+    public int[] sell;
+    public int[] buy;
 }
 
  

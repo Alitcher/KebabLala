@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   productType: 2
   id: 
-  price: 0
   avatar: {fileID: 0}
   foodName: 
   isMixtureActive: 
+  sell: 000000000000000000000000
+  buy: 000000000000000000000000

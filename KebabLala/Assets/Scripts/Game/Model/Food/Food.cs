@@ -7,10 +7,12 @@ public class Food : ScriptableObject
 {
     public ProductData productType = ProductData.Mixture;
     public string id;
-    public int price;
     public Sprite avatar;
     public string foodName;
     public bool[] isMixtureActive;
+
+    public int[] sell;
+    public int[] buy;
 }
 
  
