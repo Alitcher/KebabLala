@@ -16,5 +16,6 @@ MonoBehaviour:
   avatar: {fileID: 21300000, guid: 05f9fd681ee46ee4a9dfb90c2319b862, type: 3}
   productName: Ayran
   id: 0000
+  shelfIndex: 7
   sell: 01000000050000000f000000
   buy: 03000000050000000a000000

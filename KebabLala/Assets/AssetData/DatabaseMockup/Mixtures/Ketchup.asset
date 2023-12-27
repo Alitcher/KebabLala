@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   productType: 2
   avatar: {fileID: 0}
-  drinkName: 
-  id: 
-  sell: 0
-  buy: 0
+  productName: Ketchup
+  id: 000000001
+  sell: 010000000200000003000000
+  buy: 010000000100000001000000

@@ -16,5 +16,6 @@ MonoBehaviour:
   avatar: {fileID: 21300000, guid: f8fccd1232204ec41ad7832bd9e05c60, type: 3}
   productName: Cola
   id: 1111
+  shelfIndex: 6
   sell: 01000000050000000f000000
   buy: 03000000050000000a000000

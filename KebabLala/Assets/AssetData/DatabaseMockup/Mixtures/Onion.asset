@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   productType: 2
   avatar: {fileID: 0}
-  drinkName: 
-  id: 
-  sell: 0
-  buy: 0
+  productName: Onion
+  id: 000100000
+  shelfIndex: 1
+  sell: 02000000050000000a000000
+  buy: 0a0000000f00000014000000
