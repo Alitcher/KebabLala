@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3ab02c238226c542ad59b02578d9944, type: 3}
-  m_Name: Meat
+  m_Name: Doner
   m_EditorClassIdentifier: 
   productType: 2
   avatar: {fileID: 0}
-  drinkName: 
-  id: 
-  sell: 0
-  buy: 0
+  productName: Doner
+  id: 000000100
+  shelfIndex: 3
+  sell: 0a0000001400000032000000
+  buy: 140000003200000064000000

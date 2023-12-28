@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3ab02c238226c542ad59b02578d9944, type: 3}
-  m_Name: Lettuce_1
+  m_Name: Cucumber
   m_EditorClassIdentifier: 
   productType: 2
   avatar: {fileID: 0}
-  drinkName: 
-  id: 
-  sell: 0
-  buy: 0
+  productName: Cucumber
+  id: 000001000
+  shelfIndex: 1
+  sell: 02000000050000000a000000
+  buy: 0a0000000f00000014000000

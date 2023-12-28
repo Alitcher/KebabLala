@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdefd55e3ba139499b2a3f6ba3dd10d, type: 3}
+  m_Name: ProductCollectionTable-x
+  m_EditorClassIdentifier: 
+  DrinksList:
+  - {fileID: 11400000, guid: 9e56651ff84982547b5e92772f33ffa1, type: 2}
+  - {fileID: 11400000, guid: 7decf7e9753817343882b383330576d9, type: 2}
+  MixturesList:
+  - {fileID: 11400000, guid: ae5f289ecd986ef4eb91f9c1035f466a, type: 2}
+  - {fileID: 11400000, guid: a25fef65452eecf428c2933e45bae303, type: 2}
+  - {fileID: 11400000, guid: 1a699911ddb567e4eb158a1567f76277, type: 2}
+  - {fileID: 11400000, guid: a4bc5f1bb5ae0ff43bc481d0af2b5eaa, type: 2}
+  - {fileID: 11400000, guid: 53b3897141ca48840a8e93c30147c2c0, type: 2}
+  - {fileID: 11400000, guid: a58e3cb825aca2e498063a857c6e5e9a, type: 2}
+  - {fileID: 11400000, guid: dfbe2ad041351c840845287b4014bfb0, type: 2}
+  - {fileID: 11400000, guid: cf3acaa306f3e514fb46ba7825318371, type: 2}
+  - {fileID: 11400000, guid: fed69b9ca4007f94d836011c1e7260dd, type: 2}
