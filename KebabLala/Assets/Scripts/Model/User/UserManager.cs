@@ -19,7 +19,7 @@ public class UserManager : AliciaGenericSingleton<UserManager>
     {
         base.Awake();
         UpdatePlayingLevel();
-        UpdateBalance(150);
+        UpdateBalance(150); // comment this line if you dont want free 150 bucks
         UpdateCustomerCount(0);
         updateEmojis(0, 0);
     }

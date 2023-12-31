@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ProductNode : MonoBehaviour
 {
-    [SerializeField] protected TextMeshProUGUI currentPriceText, nextPriceText;
+    [SerializeField] protected TextMeshProUGUI currentPriceText, nextPriceText, arrowText;
     [SerializeField] protected Text upgradePriceText;
     [SerializeField] protected Image currencyIcon;
 
@@ -34,7 +34,7 @@ public class ProductNode : MonoBehaviour
     {
         for (int s = 0; s < Stars.Length; s++)
         {
-            Stars[s].color = ActiveColorStars[(s < currentLevel) ? 1 : 0];
+            Stars[s].color = ActiveColorStars[(s <= currentLevel) ? 1 : 0];
         }
     }
 

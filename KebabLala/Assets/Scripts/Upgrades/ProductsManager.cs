@@ -15,7 +15,7 @@ public class ProductsManager : AliciaGenericSingleton<ProductsManager>
     Array drinkValues = Enum.GetValues(typeof(DrinkList));
     Array mixtureValues = Enum.GetValues(typeof(ProductList));
 
-    public override void Awake() 
+    public override void Awake()
     {
         base.Awake();
         InitProducts();
@@ -23,8 +23,6 @@ public class ProductsManager : AliciaGenericSingleton<ProductsManager>
 
     public void InitProducts()
     {
-        //DrinksCurrentLevel = new int[ProductStatCollection.DrinksList.Length];
-       // MixtureCurrentLevel = new int[ProductStatCollection.MixturesList.Length];
         SetProductLevel();
 
     }
@@ -49,23 +47,33 @@ public class ProductsManager : AliciaGenericSingleton<ProductsManager>
         return ProductStatCollection.MixturesList[productIndex].sell[DrinksCurrentLevel[productIndex]];
     }
 
-    public int GetDrinkNextPrice(int productIndex) 
+    public int GetDrinkNextPrice(int productIndex)
     {
+        if (CheckMax(DrinksCurrentLevel[productIndex] + 1, maxLevel)) 
+        {
+            return 0;
+        }
+
         return ProductStatCollection.MixturesList[productIndex].sell[DrinksCurrentLevel[productIndex] + 1];
     }
 
-    public int GetMixtureNextPrice(int productIndex) 
+    public int GetMixtureNextPrice(int productIndex)
     {
-        return ProductStatCollection.MixturesList[productIndex].sell[MixtureCurrentLevel[productIndex]+1];
+        if (CheckMax(MixtureCurrentLevel[productIndex] + 1, maxLevel))
+        {
+            return 0;
+        }
+
+        return ProductStatCollection.MixturesList[productIndex].sell[MixtureCurrentLevel[productIndex] + 1];
     }
 
 
-    private void SetProductLevel() 
+    private void SetProductLevel()
     {
-        
+
         for (int i = 0; i < DrinksCurrentLevel.Length; i++)
         {
-            DrinksCurrentLevel[i] = PlayerPrefs.GetInt(drinkValues.GetValue(i+1).ToString());
+            DrinksCurrentLevel[i] = PlayerPrefs.GetInt(drinkValues.GetValue(i + 1).ToString());
         }
 
         for (int i = 0; i < MixtureCurrentLevel.Length; i++)
@@ -74,7 +82,7 @@ public class ProductsManager : AliciaGenericSingleton<ProductsManager>
         }
     }
 
-    public void UpdateMixtureLevel(int mixtureIndex, int currentLevel) 
+    public void UpdateMixtureLevel(int mixtureIndex, int currentLevel)
     {
         MixtureCurrentLevel[mixtureIndex] = currentLevel;
     }
@@ -95,8 +103,8 @@ public class ProductsManager : AliciaGenericSingleton<ProductsManager>
         }
     }
 
-    private void CheckMax() 
+    private bool CheckMax(int nextLevel, int maxLevel)
     {
-    
+        return (nextLevel >= maxLevel);
     }
 }

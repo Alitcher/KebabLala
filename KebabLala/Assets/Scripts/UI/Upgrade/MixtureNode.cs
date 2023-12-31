@@ -8,44 +8,45 @@ public class MixtureNode : ProductNode
     [SerializeField] private Product[] products;
     private IProductState currentState;
 
-    public override void InitData() 
+    public override void InitData()
     {
         base.InitData();
         currentState = (products[0].productType == ProductType.Drink) ? (IProductState)new DrinkState() : new MixtureState();
-        currentState.SetSellPrice(this);
-        setSellPrice(0);
+        SetSellPrice(0);
         SetActiveStars();
 
         UpgradeBtn.onClick.AddListener(UpdateNewPrice);
     }
 
-    public void setSellPrice(int currentProductLevel)
+    public void SetSellPrice(int currentProductLevel)
     {
         currentLevel = currentProductLevel;
 
+        if (currentState.GetNextPrice(products[0].shelfIndex) == "0")
+        {
+            upgradePriceText.text = "MAX";
+            nextPriceText.gameObject.SetActive(false);
+            arrowText.gameObject.SetActive(false);
+            UpgradeBtn.interactable = false;
+        }
+        else
+        {
+            upgradePriceText.text = currentState.GetUpgradePrice(products[0].shelfIndex);
+            nextPriceText.text = currentState.GetNextPrice(products[0].shelfIndex);
 
-        upgradePriceText.text = currentState.GetUpgradePrice(products[0].shelfIndex);
-        currentPriceText.text = (products[0].productType == ProductType.Mixture) ? ProductsManager.Instance.GetMixturePrice(products[0].shelfIndex).ToString()
-                                                                                : ProductsManager.Instance.GetDrinkPrice(products[0].shelfIndex).ToString();
+        }
 
-        nextPriceText.text = (products[0].productType == ProductType.Mixture) ? ProductsManager.Instance.GetMixtureNextPrice(products[0].shelfIndex).ToString()
-                                                                                : ProductsManager.Instance.GetDrinkNextPrice(products[0].shelfIndex).ToString();
-
+        currentPriceText.text = currentState.GetCurrentPrice(products[0].shelfIndex);
     }
 
-    public void UpdateNewPrice() 
+    public void UpdateNewPrice()
     {
+        UserManager.Instance.UpdateBalance(-products[0].buy[currentLevel]);
+        UserManager.Instance.OnUpdateUserStat.Invoke();
         base.UpgradeLevel();
-
         currentState.UpdateLevel(products[0].shelfIndex, currentLevel);
-
-        upgradePriceText.text = currentState.GetUpgradePrice(products[0].shelfIndex);
-
-        currentPriceText.text = (products[0].productType == ProductType.Mixture) ? ProductsManager.Instance.GetMixturePrice(products[0].shelfIndex).ToString()
-                                                                                : ProductsManager.Instance.GetDrinkPrice(products[0].shelfIndex).ToString();
-
-        nextPriceText.text = (products[0].productType == ProductType.Mixture) ? ProductsManager.Instance.GetMixtureNextPrice(products[0].shelfIndex).ToString()
-                                                                                : ProductsManager.Instance.GetDrinkNextPrice(products[0].shelfIndex).ToString();
+        SetSellPrice(currentLevel);
+        SetActiveStars();
     }
 
 }
