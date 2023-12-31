@@ -24,6 +24,8 @@ public class ProductNode : MonoBehaviour
     [SerializeField] protected Button UpgradeBtn;
 
     public int currentLevel;
+    protected string ProductName;
+
 
     public virtual void InitData()
     {
@@ -41,5 +43,11 @@ public class ProductNode : MonoBehaviour
     public void UpgradeLevel() 
     {
         currentLevel = (currentLevel < 2) ? currentLevel + 1 : 2;
+    }
+
+    public virtual void ResetData()
+    {
+        currentLevel = 0;
+        SetActiveStars();
     }
 }

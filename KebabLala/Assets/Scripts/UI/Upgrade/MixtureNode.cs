@@ -10,17 +10,31 @@ public class MixtureNode : ProductNode
 
     public override void InitData()
     {
+        currentLevel = PlayerPrefs.GetInt(products[0].name);//= currentProductLevel;
+
         base.InitData();
+        base.ProductName = products[0].productName;
         currentState = (products[0].productType == ProductType.Drink) ? (IProductState)new DrinkState() : new MixtureState();
-        SetSellPrice(0);
+        SetSellPrice();
         SetActiveStars();
 
-        UpgradeBtn.onClick.AddListener(UpdateNewPrice);
+        UpgradeBtn.onClick.AddListener(BuyProduct);
     }
 
-    public void SetSellPrice(int currentProductLevel)
+    public override void ResetData()
     {
-        currentLevel = currentProductLevel;
+        base.ResetData();
+        print($"Now: {currentState.LevelLog(products[0].shelfIndex)}");
+        nextPriceText.gameObject.SetActive(true);
+        arrowText.gameObject.SetActive(true);
+        UpgradeBtn.interactable = true;
+        upgradePriceText.text = currentState.GetUpgradePrice(products[0].shelfIndex);
+        nextPriceText.text = currentState.GetNextPrice(products[0].shelfIndex);
+        currentPriceText.text = currentState.GetCurrentPrice(products[0].shelfIndex);
+    }
+
+    public void SetSellPrice()
+    {
 
         if (currentState.GetNextPrice(products[0].shelfIndex) == "0")
         {
@@ -31,6 +45,9 @@ public class MixtureNode : ProductNode
         }
         else
         {
+            nextPriceText.gameObject.SetActive(true);
+            arrowText.gameObject.SetActive(true);
+            UpgradeBtn.interactable = true;
             upgradePriceText.text = currentState.GetUpgradePrice(products[0].shelfIndex);
             nextPriceText.text = currentState.GetNextPrice(products[0].shelfIndex);
 
@@ -39,14 +56,41 @@ public class MixtureNode : ProductNode
         currentPriceText.text = currentState.GetCurrentPrice(products[0].shelfIndex);
     }
 
-    public void UpdateNewPrice()
+    public void BuyProduct()
     {
+        print($"Before: {currentState.LevelLog(products[0].shelfIndex)}");
+
+        if (products.Length > 1)
+        {
+            for (int i = 0; i < products.Length; i++)
+            {
+
+
+            }
+        }
+        else
+        {
+
+        }
         UserManager.Instance.UpdateBalance(-products[0].buy[currentLevel]);
         UserManager.Instance.OnUpdateUserStat.Invoke();
         base.UpgradeLevel();
         currentState.UpdateLevel(products[0].shelfIndex, currentLevel);
-        SetSellPrice(currentLevel);
+        SetSellPrice();
         SetActiveStars();
+        print($"Now: {currentState.LevelLog(products[0].shelfIndex)}");
+
     }
 
+    private void CheckProductIndex()
+    {
+        if (products.Length > 1)
+        {
+            for (int i = 0; i < products.Length; i++)
+            {
+
+
+            }
+        }
+    }
 }

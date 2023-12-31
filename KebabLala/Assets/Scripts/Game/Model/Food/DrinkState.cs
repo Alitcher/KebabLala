@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class DrinkState : IProductState
 {
-    public void SetSellPrice(MixtureNode mixtureNode)
-    {
-        // Implementation for Drink
-    }
-
-    public void UpdateNewPrice(MixtureNode mixtureNode)
-    {
-        // Implementation for Drink
-    }
-
     public string GetUpgradePrice(int whichShelf) 
     {
         return ProductsManager.Instance.GetDrinkUpgradePrice(whichShelf).ToString();
@@ -26,11 +16,16 @@ public class DrinkState : IProductState
 
     public string GetNextPrice(int whichShelf)
     {
-        return ProductsManager.Instance.GetDrinkUpgradePrice(whichShelf).ToString();
+        return ProductsManager.Instance.GetDrinkNextPrice(whichShelf).ToString();
     }
 
     public void UpdateLevel(int whichShelf, int currentLevel) 
     {
         ProductsManager.Instance.UpdateDrinkLevel(whichShelf, currentLevel);
+    }
+
+    public string LevelLog(int whichShelf)
+    {
+        return $"{ProductsManager.Instance.DrinkValues.GetValue(whichShelf)} Level = {PlayerPrefs.GetInt(ProductsManager.Instance.MixtureValues.GetValue(whichShelf).ToString())})";
     }
 }
