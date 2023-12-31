@@ -9,8 +9,11 @@ public class User : ScriptableObject
     public string id;
     public string username;
     public string password;
-    public float balance;
+    public int balance;
+    public int customerCount;
     public int maxLevel;
     public int playingLevel;
     public int exp;
+    public int upsetCount;
+    public int happyCount;
 }

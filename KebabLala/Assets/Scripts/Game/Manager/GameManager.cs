@@ -22,8 +22,9 @@ public class GameManager : MonoBehaviour
 
     public Level playingLevel;
     public Customer[] CustomerCollection;
-    public Drink[] DrinksCollection;
-    public Food[] KebabCombination;
+    public Product[] DrinksCollection;
+    public Container[] KebabCombination;
+    public int[] MixturePrices;
 
     public RectTransform[] spotForCustomers;
 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public float countdownTime;
     private float currentTime;
+
 
     private int PlayerMoney = 1;
     private GameState gameState;
@@ -59,7 +61,7 @@ public class GameManager : MonoBehaviour
         countdownTime = (float)playingLevel.timeLimited;
         currentTime = countdownTime;
 
-        playingLevel = GameSystem.Instance.LevelCollections.LevelGroups[GameSystem.PlayerLevel].level;
+        playingLevel = GameSystem.Instance.LevelCollections.LevelGroups[GameSystem.Instance.PlayerLevel].level;
         overlayManager.gameObject.SetActive(true);
         overlayManager.SetActiveChildPanel<MissionPanel>();
         overlayManager.SetMissionDetail(playingLevel.moneyGoal, playingLevel.customerGoal, 0);

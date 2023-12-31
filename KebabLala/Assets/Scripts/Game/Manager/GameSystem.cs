@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class GameSystem : AliciaGenericSingleton<GameSystem>
 {
+
     public LevelCollection LevelCollections;
     public GameManager gameManager;
     public Action OnGameSceneActive;
-    public static int PlayerLevel = 1;
+    public int PlayerLevel = 0;
 
     public override void Awake()
     {

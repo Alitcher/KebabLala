@@ -2,6 +2,7 @@
 {
     None,
     PlayingLevel,
+    CustomerCount,
     MoneyBalance,
     MaxLevel,
     UpsetReactCount,
@@ -9,18 +10,6 @@
     Exp
 }
 
-public enum MixtureSavedList
-{
-    None,
-    Lettuce,
-    MiniVeg,
-    Tortilla,
-    Doner,
-    Fries,
-    Plates,
-    Cola,
-    Ayran
-}
 
 public enum GameSystemSavedList
 {

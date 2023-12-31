@@ -1,6 +1,5 @@
 ﻿public enum ProductType
 {
-    None,
     Drink,
     Mixture,
     Plate
@@ -8,29 +7,25 @@
 
 public enum ProductList
 {
-    None,
     Lettuce,
-    Tomato,
     Tortilla,
-    Onion,
     Fries,
+    Tomato,
+    Onion,
     Cucumber,
     Doner,
-    Plates,
     Cola,
     Ayran
 }
 
 public enum DrinkList
 {
-    None,
-    Ayran,
-    Cola
+    Cola,
+    Ayran
 }
 
 public enum ContainerList
 {
-    None,
     Plate,
     Box,
     PaperBag

@@ -6,16 +6,19 @@ using UnityEngine;
 public class KebabData : MonoBehaviour
 {
     [HideInInspector]
-    public Food kebabData;
-    public Food kebabDataScriptable;
+    public Container kebabData;
+    public Container kebabDataScriptable;
 
     public GameObject[] CustomerMixtures => Ingredients;
     [SerializeField] private GameObject[] Ingredients;
+
+    [SerializeField] private int[] MixtureSellPricesList;
 
     public void SetActiveIndredients()
     {
         kebabData = Instantiate(kebabDataScriptable);
         StringBuilder idBuilder = new StringBuilder();
+        bool atLeastOneActive = false; // Flag to track if at least one ingredient is active.
 
         for (int i = 0; i < Ingredients.Length; i++)
         {
@@ -27,6 +30,10 @@ public class KebabData : MonoBehaviour
                 kebabData.isMixtureActive[i] = isActive;
                 idBuilder.Append(isActive ? "1" : "0");
                 Ingredients[i].SetActive(isActive);
+                if (isActive)
+                {
+                    atLeastOneActive = true;
+                }
             }
             else
             {
@@ -35,9 +42,28 @@ public class KebabData : MonoBehaviour
                 Ingredients[i].SetActive(false);
             }
 
-            kebabData.id = idBuilder.ToString();
 
         }
+
+        // If no ingredient was set to active, set one ingredient to active randomly.
+        if (!atLeastOneActive)
+        {
+            // Generate a valid random index within the bounds of the Ingredients array.
+            int randomIndex = Random.Range(0, Ingredients.Length);
+
+            // Ensure that the randomIndex is within the valid range.
+            randomIndex = Mathf.Clamp(randomIndex, 0, Ingredients.Length - 1);
+
+            // Set the randomly selected ingredient to active.
+            kebabData.isMixtureActive[randomIndex] = true;
+
+            // Update the corresponding character in the idBuilder to '1'.
+            idBuilder[randomIndex] = '1';
+
+            // Set the selected ingredient to active.
+            Ingredients[randomIndex].SetActive(true);
+        }
+        kebabData.id = idBuilder.ToString();
     }
 
     internal bool CheckMatch(GameObject[] kebabDatas)
