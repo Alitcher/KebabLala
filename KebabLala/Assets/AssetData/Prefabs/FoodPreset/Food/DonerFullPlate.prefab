@@ -343,7 +343,7 @@ RectTransform:
   m_Children:
   - {fileID: 4562339314101835305}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -678,7 +678,7 @@ RectTransform:
   m_Children:
   - {fileID: 8180183336911522918}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -898,7 +898,7 @@ RectTransform:
   m_Children:
   - {fileID: 8180183337385942225}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1232,7 +1232,7 @@ RectTransform:
   - {fileID: 8180183337407234156}
   - {fileID: 8180183337109906932}
   m_Father: {fileID: 8180183338743729995}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1276,10 +1276,10 @@ RectTransform:
   m_Children:
   - {fileID: 8024153000330729329}
   - {fileID: 8180183337039541155}
-  - {fileID: 8180183338739342823}
   - {fileID: 8180183337330827269}
-  - {fileID: 8180183336897369301}
   - {fileID: 3344354935924791018}
+  - {fileID: 8180183338739342823}
+  - {fileID: 8180183336897369301}
   - {fileID: 7969075838685803823}
   - {fileID: 7087827471034722972}
   - {fileID: 5216592388054580937}
@@ -1378,15 +1378,18 @@ MonoBehaviour:
   kebabData: {fileID: 0}
   FoodCollection:
   - {fileID: 8180183337039541164}
-  - {fileID: 8180183338739342816}
   - {fileID: 8180183337330827270}
-  - {fileID: 8180183336897369302}
   - {fileID: 4283906204272026710}
+  - {fileID: 8180183338739342816}
+  - {fileID: 8180183336897369302}
   - {fileID: 4989278537850610292}
   - {fileID: 118976235922231489}
   - {fileID: 6987768119902218576}
   - {fileID: 9186703773040697259}
+  prices: 
   clearBtn: {fileID: 3586254883059908984}
+  platePrice: 0
+  MixturesPrices: 0
 --- !u!225 &1478363894
 CanvasGroup:
   m_ObjectHideFlags: 0

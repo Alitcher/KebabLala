@@ -29,7 +29,7 @@ RectTransform:
   m_Children:
   - {fileID: 4282956319882935978}
   m_Father: {fileID: 5780325408325625943}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -136,7 +136,7 @@ RectTransform:
   m_Children:
   - {fileID: 1940237336745111324}
   m_Father: {fileID: 5780325408325625943}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1024,7 +1024,7 @@ RectTransform:
   - {fileID: 3387172179640971656}
   - {fileID: 2471696233042519064}
   m_Father: {fileID: 5780325408325625943}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1064,10 +1064,10 @@ RectTransform:
   m_Children:
   - {fileID: 7280553388007750890}
   - {fileID: 6270239499912135218}
-  - {fileID: 2122715638510271111}
   - {fileID: 6331587562421962109}
-  - {fileID: 1853205473040670567}
   - {fileID: 6416190996150997138}
+  - {fileID: 2122715638510271111}
+  - {fileID: 1853205473040670567}
   - {fileID: 1671832791701258298}
   - {fileID: 5357410002467656688}
   - {fileID: 6991202150200841482}
@@ -1134,14 +1134,15 @@ MonoBehaviour:
     type: 2}
   Ingredients:
   - {fileID: 2780964555189427424}
-  - {fileID: 6435124243850605372}
   - {fileID: 110874625564981178}
-  - {fileID: 8917104499462325940}
   - {fileID: 1412826254428842629}
+  - {fileID: 6435124243850605372}
+  - {fileID: 8917104499462325940}
   - {fileID: 8684279275808311005}
   - {fileID: 8828961610463301676}
   - {fileID: 8451624459333290813}
   - {fileID: 1398862210977835729}
+  MixtureSellPricesList: 
 --- !u!114 &26742598193819158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1157,15 +1158,18 @@ MonoBehaviour:
   kebabData: {fileID: 7944005819106609926}
   FoodCollection:
   - {fileID: 2780964555189427424}
-  - {fileID: 6435124243850605372}
   - {fileID: 110874625564981178}
-  - {fileID: 8917104499462325940}
   - {fileID: 1412826254428842629}
+  - {fileID: 6435124243850605372}
+  - {fileID: 8917104499462325940}
   - {fileID: 8684279275808311005}
   - {fileID: 8828961610463301676}
   - {fileID: 8451624459333290813}
   - {fileID: 1398862210977835729}
+  prices: 
   clearBtn: {fileID: 0}
+  platePrice: 0
+  MixturesPrices: 0
 --- !u!1 &8451624459333290813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,7 +1308,7 @@ RectTransform:
   m_Children:
   - {fileID: 8598398981944513275}
   m_Father: {fileID: 5780325408325625943}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
