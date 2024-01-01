@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ab02c238226c542ad59b02578d9944, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
-  productType: 2
+  productType: 1
   avatar: {fileID: 0}
   productName: Tomato
   id: 010000000

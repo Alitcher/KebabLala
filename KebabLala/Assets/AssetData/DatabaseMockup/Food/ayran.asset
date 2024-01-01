@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ab02c238226c542ad59b02578d9944, type: 3}
   m_Name: ayran
   m_EditorClassIdentifier: 
-  productType: 1
+  productType: 0
   avatar: {fileID: 21300000, guid: 05f9fd681ee46ee4a9dfb90c2319b862, type: 3}
   productName: Ayran
   id: 0000

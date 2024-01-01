@@ -21,7 +21,7 @@ MonoBehaviour:
   DisplayMask: 000101
   DialogPosition:
   - {x: 0, y: 0, z: 0, w: 0}
-  - {x: 530, y: 550, z: 780, w: 100}
+  - {x: 530, y: 486, z: 600, w: 206}
   - {x: 355, y: 150, z: 595, w: 350}
   left: 0
   top: 0

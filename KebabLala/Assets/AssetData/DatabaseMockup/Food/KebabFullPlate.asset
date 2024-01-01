@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5a4101e5b276844a6ea036ef7d74c9, type: 3}
   m_Name: KebabFullPlate
   m_EditorClassIdentifier: 
-  productType: 3
+  productType: 2
   id: 999
   avatar: {fileID: 0}
   foodName: KebabFullPlate

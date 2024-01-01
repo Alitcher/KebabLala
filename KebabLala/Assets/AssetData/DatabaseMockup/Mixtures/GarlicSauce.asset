@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ab02c238226c542ad59b02578d9944, type: 3}
   m_Name: GarlicSauce
   m_EditorClassIdentifier: 
-  productType: 2
+  productType: 1
   avatar: {fileID: 0}
   productName: GarlicSauce
   id: 000000010
+  shelfIndex: 0
   sell: 010000000200000003000000
   buy: 010000000100000001000000

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ab02c238226c542ad59b02578d9944, type: 3}
   m_Name: Fries
   m_EditorClassIdentifier: 
-  productType: 2
+  productType: 1
   avatar: {fileID: 0}
   productName: Fries
   id: 000010000
-  shelfIndex: 4
+  shelfIndex: 2
   sell: 050000000a00000014000000
   buy: 0a000000140000001e000000
