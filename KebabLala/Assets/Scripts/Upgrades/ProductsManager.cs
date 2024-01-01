@@ -12,8 +12,8 @@ public class ProductsManager : AliciaGenericSingleton<ProductsManager>
     public int[] MixtureCurrentLevel;
     public int PlateLevel;
 
-    Array drinkValues = Enum.GetValues(typeof(DrinkList));
-    Array mixtureValues = Enum.GetValues(typeof(ProductList));
+    public Array DrinkValues = Enum.GetValues(typeof(DrinkList));
+    public Array MixtureValues = Enum.GetValues(typeof(ProductList));
 
     public override void Awake()
     {
@@ -73,32 +73,48 @@ public class ProductsManager : AliciaGenericSingleton<ProductsManager>
 
         for (int i = 0; i < DrinksCurrentLevel.Length; i++)
         {
-            DrinksCurrentLevel[i] = PlayerPrefs.GetInt(drinkValues.GetValue(i + 1).ToString());
+            DrinksCurrentLevel[i] = PlayerPrefs.GetInt(DrinkValues.GetValue(i).ToString());
         }
 
         for (int i = 0; i < MixtureCurrentLevel.Length; i++)
         {
-            MixtureCurrentLevel[i] = PlayerPrefs.GetInt(mixtureValues.GetValue(i + 1).ToString());
+            MixtureCurrentLevel[i] = PlayerPrefs.GetInt(MixtureValues.GetValue(i).ToString());
         }
     }
 
     public void UpdateMixtureLevel(int mixtureIndex, int currentLevel)
     {
         MixtureCurrentLevel[mixtureIndex] = currentLevel;
+        PlayerPrefs.SetInt(MixtureValues.GetValue(mixtureIndex).ToString(), currentLevel);
     }
 
     public void UpdateDrinkLevel(int drinkIndex, int currentLevel)
     {
         DrinksCurrentLevel[drinkIndex] = currentLevel;
+        PlayerPrefs.SetInt(DrinkValues.GetValue(drinkIndex).ToString(), currentLevel);
+
     }
 
     public void ResetMixtureLevel()
     {
-        int length = mixtureValues.Length;
+        int length = MixtureValues.Length;
 
-        for (int i = 1; i < length; i++)
+        for (int i = 0; i < length; i++)
         {
-            string name = mixtureValues.GetValue(i).ToString();
+            MixtureCurrentLevel[i] = 0;
+            string name = MixtureValues.GetValue(i).ToString();
+            PlayerPrefs.SetInt(name, 0);
+        }
+    }
+
+    public void ResetDrinkLevel() 
+    {
+        int length = DrinkValues.Length;
+
+        for (int i = 0; i < length; i++)
+        {
+            DrinksCurrentLevel[i] = 0;
+            string name = DrinkValues.GetValue(i).ToString();
             PlayerPrefs.SetInt(name, 0);
         }
     }
