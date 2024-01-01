@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,8 @@ public class ProductHandler : MonoBehaviour
 {
     public KebabMixtures ProductType;
     public Drinks DrinkType;
-    public Drink product;
-    public Food mealPlate;
+    public Product product;
+    public Container mealPlate;
     private bool handed = false;
 
     public bool onPlate;
@@ -45,6 +46,7 @@ public class ProductHandler : MonoBehaviour
             plate = this.gameObject.GetComponent<PlateHandler>();
             handed = true;
         }
+        DoShakeAnimation();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -65,8 +67,20 @@ public class ProductHandler : MonoBehaviour
 
     private bool CheckProductMatchWithCustomer()
     {
-        return (this.tag == "plate") ? customer.KebabData.CheckMatch(plate.id)//customer.KebabData.CheckMatch(plate.FoodCollection)
+        return (this.tag == "plate") ? customer.KebabData.CheckMatch(plate.id)
                                      : customer.CheckProductMatch(product.id, ref handed);
+    }
+
+    private void DoShakeAnimation()
+    {
+        //if customer.KebabData.CheckMatch(plate.id) is true then shake this object in local position x and y
+        // Shake the GameObject for 0.5 seconds in the x and y local position with a strength of 1,
+        // 10 vibrato (jumps per second), 90 degrees randomness, snapping to the nearest whole number off, 
+        // and fade out true so the animation eases out towards the end.
+        if (customer != null && CheckProductMatchWithCustomer())
+        {
+            this.transform.DOShakePosition(0.5f, new Vector3(1, 1, 0), 10, 90, false, true);
+        }
     }
 
     public bool isValidToCustomer()
@@ -106,6 +120,7 @@ public class ProductHandler : MonoBehaviour
     private void HandleDrinkProduct()
     {
         int currentProductLevel = GetCurrentProductLevel();
+
         GameSystem.Instance.gameManager.EarnMoney(product.sell[currentProductLevel]);
     }
 
@@ -113,8 +128,8 @@ public class ProductHandler : MonoBehaviour
     {
         switch (product.name)
         {
-            case "Cola": return PlayerPrefs.GetInt(MixtureSavedList.Cola.ToString());
-            case "Ayran": return PlayerPrefs.GetInt(MixtureSavedList.Ayran.ToString());
+            case "Cola": return PlayerPrefs.GetInt(ProductList.Cola.ToString());
+            case "Ayran": return PlayerPrefs.GetInt(ProductList.Ayran.ToString());
             default: return 0;
         }
     }
@@ -125,12 +140,7 @@ public class ProductHandler : MonoBehaviour
         customer.SetKebabHanded();
         plate.ClearCollection();
         GameSystem.Instance.gameManager.increaseTime(5);
-        GameSystem.Instance.gameManager.EarnMoney(150);
-    }
-
-    private void CalculateEarn() 
-    {
-    
+        GameSystem.Instance.gameManager.EarnMoney(plate.KebabPlatePrice);
     }
 
     internal bool isOnPlate()

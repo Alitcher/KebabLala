@@ -33,6 +33,8 @@ public class CustomerHandler : MonoBehaviour
     [SerializeField] private int tip;
     [SerializeField] private int desiredFoodCount;
 
+    [SerializeField] private DoCharacter doCharAnim;
+
     private Action OnEnableTimeUp;
 
     private bool isTimeup;
@@ -47,17 +49,6 @@ public class CustomerHandler : MonoBehaviour
         CountdownOrder();
     }
 
-    public void Timeup()
-    {
-        if (WaitingBar.value <= 0)
-        {
-            BubbleParent.SetActive(false);
-            reaction.sprite = reactEmoji[1];
-            reaction.gameObject.SetActive(true);
-            GameSystem.Instance.gameManager.SetTimeupCustormer();
-            DestroyThis();
-        }
-    }
 
     public bool CheckProductMatch(string id, ref bool handed)
     {
@@ -127,7 +118,7 @@ public class CustomerHandler : MonoBehaviour
         id = data.id;
 
         drinksCount = GameSystem.Instance.gameManager.IsEarlyCustomer() ? 1 : UnityEngine.Random.Range(1, GameSystem.Instance.gameManager.playingLevel.MaxOrder);
-        kebabCount = (GameSystem.Instance.gameManager.IsEarlyCustomer() || GameSystem.PlayerLevel == 0) ? 0 : 1;
+        kebabCount = (GameSystem.Instance.gameManager.IsEarlyCustomer() || GameSystem.Instance.PlayerLevel == 0) ? 0 : 1;
 
         desiredFoodCount = drinksCount + kebabCount;
 
@@ -159,8 +150,8 @@ public class CustomerHandler : MonoBehaviour
 
 
         }
-
-
+        doCharAnim.SetPos();
+        doCharAnim.DoIdle();
         reaction.gameObject.SetActive(false);
     }
 
@@ -200,8 +191,21 @@ public class CustomerHandler : MonoBehaviour
         }
     }
 
+    public void Timeup()
+    {
+        if (WaitingBar.value <= 0)
+        {
+            BubbleParent.SetActive(false);
+            reaction.sprite = reactEmoji[1];
+            reaction.gameObject.SetActive(true);
+            GameSystem.Instance.gameManager.SetTimeupCustormer();
+            DestroyThis();
+        }
+    }
+
     internal void SetKebabHanded()
     {
+        WaitingBar.value += WaitingBar.value / WaitingBar.maxValue * 120.0f;
         desiredFoodId[0] = null;
         if (CheckGetAllProduct())
         {

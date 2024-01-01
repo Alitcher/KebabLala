@@ -15,7 +15,7 @@ public class MissionPanel : Overlay
 
     public void SetLevel() 
     {
-        LevelHeader.SetDescription(ref GameSystem.Instance.LevelCollections.LevelGroups[GameSystem.PlayerLevel].level.id);
+        LevelHeader.SetDescription(ref GameSystem.Instance.LevelCollections.LevelGroups[GameSystem.Instance.PlayerLevel].level.id);
     }
 
     public void SetIncome(string income)
