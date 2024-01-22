@@ -2,10 +2,10 @@
 {
     None,
     Lettuce,
-    Tomato,
     Tortilla,
-    Onion,
     Fries,
+    Tomato,
+    Onion,
     Cucumber,
     Doner,
     GarlicSauce,

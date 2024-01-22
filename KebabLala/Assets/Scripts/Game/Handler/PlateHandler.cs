@@ -10,8 +10,12 @@ public class PlateHandler : MonoBehaviour
 {
     public KebabData kebabData;
     public GameObject[] FoodCollection;
+    public int[] prices;
     [SerializeField] private Button clearBtn;
-    // Start is called before the first frame update
+    [SerializeField] private int platePrice;
+
+    public int KebabPlatePrice => 50 + MixturesPrices; 
+    public int MixturesPrices = 0;
 
     public string id { get; private set; }
 
@@ -19,7 +23,6 @@ public class PlateHandler : MonoBehaviour
     public void SetActiveCollection(string foodName)
     {
         StringBuilder idBuilder = new StringBuilder(id);
-
         for (int i = 0; i < FoodCollection.Length; i++) // FoodCollection is also called mixture
         {
             if (foodName == FoodCollection[i].name)
@@ -28,11 +31,17 @@ public class PlateHandler : MonoBehaviour
                 if (idBuilder.Length > i) // Make sure the StringBuilder has enough characters
                 {
                     idBuilder[i] = '1';
+                    MixturesPrices += ProductsManager.Instance.GetMixturePrice(i);
                 }
             }
         }
         id = idBuilder.ToString();
         clearBtn.gameObject.SetActive(true);
+    }
+
+    public void GetMixturePrice(ProductType type) 
+    {
+    
     }
 
     public void ClearCollection()
