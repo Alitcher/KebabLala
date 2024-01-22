@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using DG.Tweening;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
@@ -95,15 +96,33 @@ public class KebabData : MonoBehaviour
         return true;
     }
 
-    internal bool CheckMatch(string id)
+    internal bool CheckMatch(string id, bool isHanded)
     {
         bool matched = kebabData.id == id;
-
-        if (matched) 
+        if (matched ) 
         {
-            this.gameObject.SetActive(false);
+            DoShakeAnimation();
+            if (isHanded) 
+            {
+                this.gameObject.SetActive(false);
+
+            }
         }
 
         return matched;
+    }
+
+    private void DoShakeAnimation()
+    {
+        this.transform.DOShakePosition(
+            0.5f, // Duration of shake
+            new Vector3(5, 5, 0), // Increase strength for more noticeable shakes
+            20, // Increase vibrato for more distinct shakes
+            90, // Randomness, affects the shake variation
+            false, // Snapping
+            true // Fade out towards the end
+        );
+
+
     }
 }

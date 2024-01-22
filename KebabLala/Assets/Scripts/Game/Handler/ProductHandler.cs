@@ -25,6 +25,7 @@ public class ProductHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        isDragging = true;
         if (collision.tag == "customer")
         {
             customer = collision.gameObject.GetComponent<CustomerHandler>();
@@ -46,7 +47,7 @@ public class ProductHandler : MonoBehaviour
             plate = this.gameObject.GetComponent<PlateHandler>();
             handed = true;
         }
-        DoShakeAnimation();
+       DoShakeAnimation();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -67,8 +68,14 @@ public class ProductHandler : MonoBehaviour
 
     private bool CheckProductMatchWithCustomer()
     {
-        return (this.tag == "plate") ? customer.KebabData.CheckMatch(plate.id)
+        return (this.tag == "plate") ? customer.KebabData.CheckMatch(plate.id, true)
                                      : customer.CheckProductMatch(product.id, ref handed);
+    }
+
+    private bool CheckProductMatchTrigger()
+    {
+        return (this.tag == "plate") ? customer.KebabData.CheckMatch(plate.id, false)
+                                     : customer.CheckProductMatch(product.id);
     }
 
     private void DoShakeAnimation()
@@ -77,9 +84,8 @@ public class ProductHandler : MonoBehaviour
         // Shake the GameObject for 0.5 seconds in the x and y local position with a strength of 1,
         // 10 vibrato (jumps per second), 90 degrees randomness, snapping to the nearest whole number off, 
         // and fade out true so the animation eases out towards the end.
-        if (customer != null && CheckProductMatchWithCustomer())
+        if (customer != null && CheckProductMatchTrigger())
         {
-            this.transform.DOShakePosition(0.5f, new Vector3(1, 1, 0), 10, 90, false, true);
         }
     }
 
@@ -142,6 +148,7 @@ public class ProductHandler : MonoBehaviour
         GameSystem.Instance.gameManager.increaseTime(5);
         GameSystem.Instance.gameManager.EarnMoney(plate.KebabPlatePrice);
     }
+
 
     internal bool isOnPlate()
     {
