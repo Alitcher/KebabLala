@@ -11,10 +11,7 @@ public class ShelfHandler : MonoBehaviour
     {
         for (int i = 0; i < mixtureCollection.Length; i++)
         {
-            if (mixtureCollection[i].ProductType == whichMixture)
-            {
                 mixtureCollection[i].transform.parent.gameObject.SetActive(true);
-            }
         }
     }
 

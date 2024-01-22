@@ -17,16 +17,6 @@ public class Drag : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-
-        //if (!TryGetComponent(out handler))
-        //{
-        //    Debug.LogError("ProductHandler component not found on GameObject");
-        //}
-        //else
-        //{
-        //    // Do something with the handler component
-        //}
-
         OriginalPos = rectTransform.anchoredPosition;
     }
 

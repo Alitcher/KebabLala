@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,28 +59,62 @@ public class CustomerHandler : MonoBehaviour
                 continue;
             if (id == desiredFoodId[i] && handed)
             {
-                desiredFoodId[i] = null;
-                if (CheckGetAllProduct())
-                {
-                    GameSystem.Instance.gameManager.SetServedManager();
-                    reaction.sprite = reactEmoji[0];
-                    DestroyThis();
-
-                }
-
-                if (desiredDrinkIcon.Length >= i && desiredDrinkIcon[i] != null)
-                {
-                    BubbleBox.transform.GetChild(i).gameObject.SetActive(false);
-                    desiredDrinkIcon[i] = null;//.gameObject.SetActive(false);
-                }
-
-
+                receiveProduct(i);
                 return true;
-
             }
 
         }
         return false;
+    }
+
+    public bool CheckProductMatch(string id)
+    {
+        for (int i = 0; i < desiredFoodCount; i++)
+        {
+            if (desiredFoodId[i] == null)
+                continue;
+            if (id == desiredFoodId[i])
+            {
+                DoShakeAnimationAt(i);
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public void DoShakeAnimationAt(int whichProduct)
+    {
+        desiredDrinkIcon[whichProduct].transform.DOShakePosition(
+            0.5f, // Duration of shake
+            new Vector3(5, 5, 0), // Increase strength for more noticeable shakes
+            20, // Increase vibrato for more distinct shakes
+            90, // Randomness, affects the shake variation
+            false, // Snapping
+            true // Fade out towards the end
+        );
+
+
+    }
+
+    public void receiveProduct(int whichProduct)
+    {
+        desiredFoodId[whichProduct] = null;
+        if (CheckGetAllProduct())
+        {
+            doCharAnim.DoCompleteOrder();
+            GameSystem.Instance.gameManager.SetServedManager();
+            reaction.sprite = reactEmoji[0];
+            DestroyThis();
+
+        }
+
+        if (desiredDrinkIcon.Length >= whichProduct && desiredDrinkIcon[whichProduct] != null)
+        {
+            WaitingBar.value += WaitingBar.value / WaitingBar.maxValue * 20.0f;
+            BubbleBox.transform.GetChild(whichProduct).gameObject.SetActive(false);
+            desiredDrinkIcon[whichProduct] = null;//.gameObject.SetActive(false);
+        }
     }
 
     private bool CheckGetAllProduct()
@@ -177,7 +212,7 @@ public class CustomerHandler : MonoBehaviour
 
     private void CountdownOrder()
     {
-        if (isTimeup) 
+        if (isTimeup)
         {
             return;
         }
