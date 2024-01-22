@@ -16,6 +16,11 @@ public class SceneControlManager : AliciaGenericSingleton<SceneControlManager>
         SceneManager.LoadScene("Menu");
     }
 
+    public void LevelSelection() 
+    {
+        SceneManager.LoadScene("LevelSelection");
+    }
+
     public void Pause(bool isPaused)
     {
         Time.timeScale = (isPaused) ? 1.0f : 0.0f;

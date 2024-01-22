@@ -233,14 +233,20 @@ public class GameManager : MonoBehaviour
     {
         if (IsCustomerComplete) 
         {
+            BGM.Stop();
             gameState = GameState.Summary;
             soundManager.Play2("blink");
-            BGM.Stop();
-            overlayManager.gameObject.SetActive(true);
-            overlayManager.SetActiveChildPanel<GameSummaryPanel>();
-            overlayManager.SetSummaryDetail(PlayerMoney, customerCount, happyCount, upsetCount);
-
+            Invoke("TriggerSummary", 1.0f);
         }
+    }
+
+    private void TriggerSummary() 
+    {
+
+        overlayManager.gameObject.SetActive(true);
+        overlayManager.SetActiveChildPanel<GameSummaryPanel>();
+        overlayManager.SetSummaryDetail(PlayerMoney, customerCount, happyCount, upsetCount);
+
     }
 
     public void increaseTime(float moreTime)

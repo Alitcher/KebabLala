@@ -7,26 +7,10 @@ public class MenuScreen : MonoBehaviour
 {
     [SerializeField] private GameObject btnGroup;
     [SerializeField] private GameObject creditGroup;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Menu();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void GotoLevelSelection()
     {
         SceneManager.LoadScene("LevelSelection");
-    }
-
-    public void StartGame()
-    {
-        SceneManager.LoadScene("Game");
     }
 
     public void Quit()
