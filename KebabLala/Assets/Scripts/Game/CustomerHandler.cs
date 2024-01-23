@@ -102,11 +102,8 @@ public class CustomerHandler : MonoBehaviour
         desiredFoodId[whichProduct] = null;
         if (CheckGetAllProduct())
         {
-            doCharAnim.DoCompleteOrder();
             GameSystem.Instance.gameManager.SetServedManager();
-            reaction.sprite = reactEmoji[0];
-            DestroyThis();
-
+            CompleteOrder();
         }
 
         if (desiredDrinkIcon.Length >= whichProduct && desiredDrinkIcon[whichProduct] != null)
@@ -117,7 +114,17 @@ public class CustomerHandler : MonoBehaviour
         }
     }
 
-    private bool CheckGetAllProduct()
+    public void CompleteOrder() 
+    {
+        BubbleParent.SetActive(false);
+        doCharAnim.DoCompleteOrder();
+        reaction.sprite = reactEmoji[0];
+        reaction.gameObject.SetActive(true);
+
+        DestroyThis();
+    }
+
+    public bool CheckGetAllProduct()
     {
         bool getAll = true;
         for (int i = 0; i < desiredFoodCount; i++)

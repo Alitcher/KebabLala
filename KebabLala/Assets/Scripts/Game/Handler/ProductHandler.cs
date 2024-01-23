@@ -17,7 +17,7 @@ public class ProductHandler : MonoBehaviour
     CustomerHandler customer;
     [SerializeField] private PlateHandler plate;
 
-    private bool isDragging = false; 
+    [SerializeField] private bool isDragging = false; 
     public void SetDragging(bool isOnDrag) 
     {
     isDragging = isOnDrag;
@@ -25,9 +25,10 @@ public class ProductHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isDragging = true;
         if (collision.tag == "customer")
         {
+            isDragging = true; // assuming that when the product hit the customer, the player is holding this product.
+
             customer = collision.gameObject.GetComponent<CustomerHandler>();
             if (customer.wantsKebab() && !GameSystem.Instance.gameManager.IsEarlyCustomer() && plate!= null && plate.kebabData != null)
             {
@@ -36,7 +37,7 @@ public class ProductHandler : MonoBehaviour
             }
             handed = true;
         }
-        else if (collision.tag == "plate" && isDragging)
+        else if (collision.tag == "plate")
         {
             plate = collision.gameObject.GetComponent<PlateHandler>();
             isOnPlate();

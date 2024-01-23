@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameOverlayManager overlayManager;
-    [SerializeField] private TableHandler tableHandler; 
+    [SerializeField] private TableHandler tableHandler;
 
     public bool skipTutorial = false;
 
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     public GameUIMainView uiManager;
     public SoundController soundManager;
-    
+
 
     public float countdownTime;
     private float currentTime;
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void SetLevelConfig() 
+    public void SetLevelConfig()
     {
         countdownTime = (float)playingLevel.timeLimited;
         currentTime = countdownTime;
@@ -86,20 +86,20 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
+
         SetLevelConfig();
 
     }
 
 
-    private void SetActiveCustomer() 
+    private void SetActiveCustomer()
     {
         uiManager.UpdateCustomerCount(customerCount.ToString(), playingLevel.customerGoal.ToString());
         spotForCustomers[0].gameObject.SetActive(true);
 
     }
 
-    private void SetActiveGameTable() 
+    private void SetActiveGameTable()
     {
         tableHandler.DisableAllShelves();
         tableHandler.DisapleMixtureInShelves();
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Pause() 
+    public void Pause()
     {
         if (IsPaused)
         {
@@ -183,14 +183,14 @@ public class GameManager : MonoBehaviour
         CheckCustomerComplete();
     }
 
-    public void SetTimeupCustormer() 
+    public void SetTimeupCustormer()
     {
         upsetCount++;
     }
 
-    private void CheckLevelFailed() 
+    private void CheckLevelFailed()
     {
-    //angry face count, discard food count
+        //angry face count, discard food count
     }
 
     public void SpawnRandomCustomer()
@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < spotForCustomers.Length; i++)
         {
 
-            if (i < playingLevel.MaxCudtomersQueue && !IsEarlyCustomer()) 
+            if (i < playingLevel.MaxCudtomersQueue && !IsEarlyCustomer())
             {
                 spotForCustomers[i].gameObject.SetActive(true);
             }
@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
                 customersInGame[i].gameObject.SetActive(true);
                 soundManager.Play("pop");
             }
-            else if (i > playingLevel.MaxCudtomersQueue) 
+            else if (i > playingLevel.MaxCudtomersQueue)
             {
                 spotForCustomers[i].gameObject.SetActive(false);
             }
@@ -229,18 +229,25 @@ public class GameManager : MonoBehaviour
     }
 
     public bool IsCustomerComplete => (customerCount >= playingLevel.customerGoal);
-    private void CheckCustomerComplete() 
+
+    private void CheckCustomerComplete()
     {
-        if (IsCustomerComplete) 
+        if (!IsCustomerComplete)
+            return;
+
+        for (int i = 0; i < customersInGame.Length; i++)
         {
-            BGM.Stop();
-            gameState = GameState.Summary;
-            soundManager.Play2("blink");
-            Invoke("TriggerSummary", 1.0f);
+            if (customersInGame[i] == null)
+                continue;
+            customersInGame[i].CompleteOrder();
         }
+        BGM.Stop();
+        gameState = GameState.Summary;
+        soundManager.Play2("blink");
+        Invoke("TriggerSummary", 1.0f);
     }
 
-    private void TriggerSummary() 
+    private void TriggerSummary()
     {
 
         overlayManager.gameObject.SetActive(true);
@@ -269,12 +276,12 @@ public class GameManager : MonoBehaviour
         return PlayerMoney;
     }
 
-    public bool IsEarlyCustomer() 
+    public bool IsEarlyCustomer()
     {
         return customerCount < 2;
     }
 
-    public bool allowKebabOrder() 
+    public bool allowKebabOrder()
     {
         return playingLevel.MixtureCollection.Length > 0;
     }
