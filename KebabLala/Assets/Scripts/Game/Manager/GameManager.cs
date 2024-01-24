@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameOverlayManager overlayManager;
     [SerializeField] private TableHandler tableHandler;
 
+    [SerializeField] private PlateHandler[] platesCollection;
     public bool skipTutorial = false;
 
     public Action OnBeginGame;
@@ -58,10 +59,11 @@ public class GameManager : MonoBehaviour
 
     public void SetLevelConfig()
     {
+        playingLevel = GameSystem.Instance.LevelCollections.LevelGroups[GameSystem.Instance.PlayerLevel].level;
+        
         countdownTime = (float)playingLevel.timeLimited;
         currentTime = countdownTime;
 
-        playingLevel = GameSystem.Instance.LevelCollections.LevelGroups[GameSystem.Instance.PlayerLevel].level;
         overlayManager.gameObject.SetActive(true);
         overlayManager.SetActiveChildPanel<MissionPanel>();
         overlayManager.SetMissionDetail(playingLevel.moneyGoal, playingLevel.customerGoal, 0);
@@ -125,6 +127,16 @@ public class GameManager : MonoBehaviour
     {
         BGM.Stop();
         soundManager.Play2("bell");
+        Invoke("TriggerLevelFail", 1.0f);
+    }
+
+    public void TriggerLevelFail() 
+    {
+        overlayManager.gameObject.SetActive(true);
+        gameState = GameState.Summary;
+        overlayManager.SetActiveChildPanel<GameSummaryPanel>();
+        overlayManager.SetSummaryDetail(false, PlayerMoney, customerCount, happyCount, upsetCount);
+        IsPaused = true;
     }
 
     private void Update()
@@ -252,15 +264,7 @@ public class GameManager : MonoBehaviour
 
         overlayManager.gameObject.SetActive(true);
         overlayManager.SetActiveChildPanel<GameSummaryPanel>();
-        overlayManager.SetSummaryDetail(PlayerMoney, customerCount, happyCount, upsetCount);
-
-    }
-
-    public void increaseTime(float moreTime)
-    {
-        countdownTime += moreTime;
-        currentTime = countdownTime + moreTime;
-        uiManager.UpdateCountdownText(minutes, seconds);
+        overlayManager.SetSummaryDetail(true,PlayerMoney, customerCount, happyCount, upsetCount);
 
     }
 

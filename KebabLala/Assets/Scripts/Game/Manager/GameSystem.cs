@@ -61,7 +61,6 @@ public class GameSystem : AliciaGenericSingleton<GameSystem>
         {
             PlayerLevel = _level;
             gameManager.SetLevelConfig();
-            //gameManager.SetGameField();
         }
     }
 

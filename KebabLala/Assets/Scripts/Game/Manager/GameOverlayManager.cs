@@ -48,14 +48,22 @@ public class GameOverlayManager : MonoBehaviour
         Invoke("DeactivateMissionPanel", 3f);
     }
 
-    public void SetSummaryDetail(int income, int customerCount, int happyCount, int upsetCount) 
+    public void SetSummaryDetail( bool isCompleted,int income, int customerCount, int happyCount, int upsetCount) 
     {
+        gameSummaryPanel.SetMissionStatus(isCompleted);
         gameSummaryPanel.SetIncome(income.ToString());
         gameSummaryPanel.SetCustomersTotal(customerCount.ToString());
 
         gameSummaryPanel.SetUpsetCustomersTotal(upsetCount > 0 ? upsetCount.ToString() : null);
         gameSummaryPanel.SetHappyCustomersTotal(happyCount > 0 ? happyCount.ToString() : null);
 
+    }
+
+    public void OnNextLevel() 
+    {
+        GameSystem.Instance.PlayerLevel++;
+        GameSystem.Instance.gameManager.SetLevelConfig();
+        RestartLevel();
     }
 
     public void SetPauseDetail(string level)

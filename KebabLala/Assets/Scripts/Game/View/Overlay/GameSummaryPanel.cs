@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameSummaryPanel : Overlay
@@ -10,6 +11,13 @@ public class GameSummaryPanel : Overlay
     [SerializeField] private TextKeyPair happyCustomers;
     [SerializeField] private TextKeyPair upsetCustomers;
     [SerializeField] private TextKeyPair leftCustomers;
+    [SerializeField] private TextMeshProUGUI LevelStatusText;
+
+
+    public void SetMissionStatus(bool isCompleted) 
+    {
+        LevelStatusText.text = isCompleted ? "Completed!" : "Fail :(";
+    }
 
     public void SetIncome(string income)
     {
