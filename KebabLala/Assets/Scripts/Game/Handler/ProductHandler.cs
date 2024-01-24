@@ -27,7 +27,7 @@ public class ProductHandler : MonoBehaviour
     {
         if (collision.tag == "customer")
         {
-            isDragging = true; // assuming that when the product hit the customer, the player is holding this product.
+            //isDragging = true; // assuming that when the product hit the customer, the player is holding this product.
 
             customer = collision.gameObject.GetComponent<CustomerHandler>();
             if (customer.wantsKebab() && !GameSystem.Instance.gameManager.IsEarlyCustomer() && plate!= null && plate.kebabData != null)
@@ -37,12 +37,16 @@ public class ProductHandler : MonoBehaviour
             }
             handed = true;
         }
-        else if (collision.tag == "plate")
+        else if (collision.tag == "plate" )
         {
+            if (GameSystem.Instance.PlayerLevel < 3 && !isDragging) 
+            {
+                return;
+            }
             plate = collision.gameObject.GetComponent<PlateHandler>();
             isOnPlate();
         }
-        else if (this.tag == "plate" && collision.tag == "customer")
+        else if (this.tag == "plate" && collision.tag == "customer" && collision.tag != "ayran" && collision.tag != "cola")
         {
             customer = collision.gameObject.GetComponent<CustomerHandler>();
             plate = this.gameObject.GetComponent<PlateHandler>();
@@ -146,7 +150,7 @@ public class ProductHandler : MonoBehaviour
         plate.SetButtonAppearance();
         customer.SetKebabHanded();
         plate.ClearCollection();
-        GameSystem.Instance.gameManager.increaseTime(5);
+        //GameSystem.Instance.gameManager.increaseTime(5);
         GameSystem.Instance.gameManager.EarnMoney(plate.KebabPlatePrice);
     }
 
