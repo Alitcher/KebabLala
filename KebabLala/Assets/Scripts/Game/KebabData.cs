@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,11 +16,13 @@ public class KebabData : MonoBehaviour
 
     [SerializeField] private int[] MixtureSellPricesList;
 
+    private List<int> activeMixtureIndices = new List<int>();
     public void SetActiveIndredients()
     {
         kebabData = Instantiate(kebabDataScriptable);
         StringBuilder idBuilder = new StringBuilder();
         bool atLeastOneActive = false; // Flag to track if at least one ingredient is active.
+        bool isActive = false;
 
         for (int i = 0; i < Ingredients.Length; i++)
         {
@@ -27,7 +30,8 @@ public class KebabData : MonoBehaviour
             if (System.Enum.TryParse(Ingredients[i].name, out KebabMixtures mixture) &&
                 GameSystem.Instance.gameManager.playingLevel.MixtureCollection.Contains(mixture))
             {
-                bool isActive = Random.Range(0, 2) == 0;
+                activeMixtureIndices.Add(i);
+                isActive = Random.Range(0, 2) == 0;
                 kebabData.isMixtureActive[i] = isActive;
                 idBuilder.Append(isActive ? "1" : "0");
                 Ingredients[i].SetActive(isActive);
@@ -49,51 +53,14 @@ public class KebabData : MonoBehaviour
         // If no ingredient was set to active, set one ingredient to active randomly.
         if (!atLeastOneActive)
         {
-            // Generate a valid random index within the bounds of the Ingredients array.
-            int randomIndex = Random.Range(0, Ingredients.Length);
+            int randomIndex = Random.Range(0, activeMixtureIndices.Count);
+            int mixtureIndex = activeMixtureIndices[randomIndex];
+            Ingredients[mixtureIndex].SetActive(true);
+            kebabData.isMixtureActive[mixtureIndex] = true;
 
-            // Ensure that the randomIndex is within the valid range.
-            randomIndex = Mathf.Clamp(randomIndex, 0, Ingredients.Length - 1);
-
-            // Set the randomly selected ingredient to active.
-            kebabData.isMixtureActive[randomIndex] = true;
-
-            // Update the corresponding character in the idBuilder to '1'.
-            idBuilder[randomIndex] = '1';
-
-            // Set the selected ingredient to active.
-            Ingredients[randomIndex].SetActive(true);
+            idBuilder[mixtureIndex] = '1';
         }
         kebabData.id = idBuilder.ToString();
-    }
-
-    internal bool CheckMatch(GameObject[] kebabDatas)
-    {
-        for (int i = 0; i < CustomerMixtures.Length; i++)
-        {
-            // Check if both elements are active or not active.
-            if (kebabDatas[i].activeSelf != CustomerMixtures[i].activeSelf)
-            {
-                // If one is active and the other is not, this is not a match.
-                return false;
-            }
-
-            // If both elements are active, check if their names match.
-            if (kebabDatas[i].activeSelf && CustomerMixtures[i].activeSelf)
-            {
-                if (kebabDatas[i].name != CustomerMixtures[i].name)
-                {
-                    // If the names don't match, it's not a perfect match.
-                    return false;
-                }
-            }
-        }
-
-        // Deactivate the game object after checking.
-        this.gameObject.SetActive(false);
-
-        // If the loop completes without returning false, it's a match.
-        return true;
     }
 
     internal bool CheckMatch(string id, bool isHanded)
